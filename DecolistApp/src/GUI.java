@@ -13,7 +13,7 @@ public class GUI {
         fr.add(desk);
         
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fr.setBounds(200, 60, 500, 750);
+        fr.setBounds(500, 60, 500, 750);
         fr.setVisible(true);
     }
 }

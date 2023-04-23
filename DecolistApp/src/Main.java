@@ -8,6 +8,6 @@ public class Main {
         catch (Exception e) {
             e.printStackTrace();
         }
-         SwingUtilities.invokeLater(() -> {GUI userInterface = new GUI(); });
+         SwingUtilities.invokeLater(() -> {new GUI(); });
     }
 }
