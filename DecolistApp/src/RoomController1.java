@@ -19,7 +19,8 @@ public class RoomController1 extends JPanel{
                 System.out.println("Nooooooo It's Error");
             }
         
-        System.out.println(""+view.getFr().getWidth()+this.getWidth());
+        //System.out.println(""+view.getFr().getWidth()+this.getWidth());
+        init();
 //        this.setBounds((view.getFr().getWidth()-this.getWidth()), 0, 400, 500);
 //        room = model.getRoom();
 //        bed = model.getBed();
@@ -27,6 +28,8 @@ public class RoomController1 extends JPanel{
         repaint();
     }
     public void init(){
+        model.addContactView(view);
+        model.addIconToView();
     }
     @Override
     public void paintComponent(Graphics g) {
@@ -35,11 +38,12 @@ public class RoomController1 extends JPanel{
             int middle_y = view.getPanelRoom().getHeight()/2 - 400/2;
             g.setColor(Color.BLACK);
             g.fillRect(middle_x-(10/2), middle_y-(10/2), 410, 410);
-//            g.drawImage(room, 0, 0, this);
-//            g.drawImage(bed[2], 0, 0, this);
-//            g.drawImage(icon[0], 0, 0, this);
             g.drawImage(model.getRoom(), middle_x, middle_y, this);
-            g.drawImage(model.getBed().getImage("Red"), middle_x, middle_y, this);
+            g.drawImage(model.getBed().getImage("Blue"), middle_x, middle_y, this);
+            g.drawImage(model.getTable().getImage("Red"), middle_x, middle_y, this);
+            g.drawImage(model.getComputer().getImage("Yellow"), middle_x, middle_y, this);
+            g.drawImage(model.getCertain().getImage("Red"), middle_x, middle_y, this);
+            g.drawImage(model.getPoster().getImage("Red"), middle_x, middle_y, this);
         System.out.println("draw done");
         }catch(NullPointerException NPe){
             System.out.println("OH No" + NPe);

@@ -1,16 +1,22 @@
 import java.io.*;
 import java.awt.*;
 import javax.imageio.*;
+import javax.swing.*;
 //import java.util.*;
 public class RoomModel {
-    public static final int FURNITURE_COUNT = 1;
-    public static final int COLOR_COUNT = 3;
-    public static final String[] ALL_COLOR = {"Red", "Green", "Blue"};
+    public static final int FURNITURE_COUNT = 5;
+    public static final int COLOR_COUNT = 4;
+    public static final String[] ALL_COLOR = {"Red", "Green", "Blue", "Yellow"};
     public static final String[] ALL_FURNITURE = {"bed", "table", "computer", "certain", "poster"};
+    public RoomView view;
     private Image room;
+    private Icon icon[];
     //static private Image table[], computer[], curtain[], poster[]; // 0=red 1=green 2=blue
     private Bed bed;
-    private Image icon[];
+    private Table table;
+    private Computer computer;
+    private Certain certain;
+    private Poster poster;
     private String[] FurnitureColor;
     private boolean FurnitureAccess[];
     
@@ -30,33 +36,105 @@ public class RoomModel {
 //        }catch(IOException IOe){
 //            System.out.println("Image loading Exception. Image file missing" + IOe);
 //        }
-
+        
         try{
             room = ImageIO.read(new File("img/room.png"));
             System.out.println("room image load successfully");
+            icon = new Icon[5];
+            icon[0] = new ImageIcon(ImageIO.read(new File("img/bedicon.png")));
+            icon[1] = new ImageIcon(ImageIO.read(new File("img/tableicon.png")));
+            icon[2] = new ImageIcon(ImageIO.read(new File("img/computericon.png")));
+            icon[3] = new ImageIcon(ImageIO.read(new File("img/certainicon.png")));
+            icon[4] = new ImageIcon(ImageIO.read(new File("img/postericon.png")));
         }catch(IOException IOe){
             System.out.println("Image loading Exception. Image file missing" + IOe);
         }
-        Image tempBundle[] = new Image[COLOR_COUNT];
         for(int i=0;i<FURNITURE_COUNT;i++){
+            Image tempBundle[] = new Image[COLOR_COUNT];
             for(int j=0;j<COLOR_COUNT;j++){
                 try{
                     File f = new File("img/"+ALL_FURNITURE[i]+ALL_COLOR[j]+".png");
                     tempBundle[j] = ImageIO.read(f);
+                    System.out.println(ALL_FURNITURE[i] + ALL_COLOR[j]);
                 }catch(IOException IOe){
                     System.out.println("Image loading Exception. Image file missing" + IOe);
                 }
             }
             if(i == 0){
                 bed = new Bed(ALL_FURNITURE[i],tempBundle);
+                System.out.println("model bed create done");
+            }else if(i == 1){
+                table = new Table(ALL_FURNITURE[i],tempBundle);
+                System.out.println("model table create done");
+            }else if(i == 2){
+                computer = new Computer(ALL_FURNITURE[i],tempBundle);
+                System.out.println("model computer create done");
+            }else if(i == 3){
+                certain = new Certain(ALL_FURNITURE[i],tempBundle);
+                System.out.println("model certain create done");
+            }else if(i == 4){
+                poster = new Poster(ALL_FURNITURE[i],tempBundle);
+                System.out.println("model poster create done");
             }
         }
+        
     }
     
     public void loadData(){
         
     }
 
+    public void addContactView(RoomView rv){
+        view = rv;
+    }
+    public void addIconToView(){
+        view.getBtBed().setIcon(icon[0]);
+        view.getBtTable().setIcon(icon[1]);
+        view.getBtComputer().setIcon(icon[2]);
+        view.getBtCertain().setIcon(icon[3]);
+        view.getBtPoster().setIcon(icon[4]);
+    }
+
+    public Table getTable() {
+        return table;
+    }
+
+    public void setTable(Table table) {
+        this.table = table;
+    }
+
+    public Computer getComputer() {
+        return computer;
+    }
+
+    public void setComputer(Computer computer) {
+        this.computer = computer;
+    }
+
+    public Certain getCertain() {
+        return certain;
+    }
+
+    public void setCertain(Certain certain) {
+        this.certain = certain;
+    }
+
+    public Poster getPoster() {
+        return poster;
+    }
+
+    public void setPoster(Poster poster) {
+        this.poster = poster;
+    }
+
+    public Icon[] getIcon() {
+        return icon;
+    }
+
+    public void setIcon(Icon[] icon) {
+        this.icon = icon;
+    }
+    
     public Bed getBed() {
         return bed;
     }
@@ -71,14 +149,6 @@ public class RoomModel {
 
     public void setRoom(Image room) {
         this.room = room;
-    }
-
-    public Image[] getIcon() {
-        return icon;
-    }
-
-    public void setIcon(Image[] icon) {
-        this.icon = icon;
     }
 
     public String[] getFurnitureColor() {

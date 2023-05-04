@@ -1,8 +1,8 @@
 import java.awt.*;
 public abstract class Furniture {
     protected String presentColor, name;
-    protected Image presentImage;
     protected Image imageArray[];
+    protected boolean access;
     
     public Furniture(){
         this("" ,new Image[10]);
@@ -12,22 +12,24 @@ public abstract class Furniture {
         this.name = name;
         imageArray = imgBundle;
         presentColor = "Red";
+        access = false;
+        System.out.println("Create Furniture " + name + " Done");
     }
     
     public Image getImage(String color){
         switch(color) {
             case "Red":
                 presentColor = "Red";
-                presentImage = imageArray[0];
-                return presentImage;
+                return imageArray[0];
             case "Green":
                 presentColor = "Green";
-                presentImage = imageArray[1];
-                return presentImage;
+                return imageArray[1];
             case "Blue":
-                presentColor = "Green";
-                presentImage = imageArray[2];
-                return presentImage;
+                presentColor = "Blue";
+                return imageArray[2];
+            case "Yellow":
+                presentColor = "Yellow";
+                return imageArray[3];
             default:
                 return null;
         }
