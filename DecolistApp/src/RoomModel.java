@@ -11,6 +11,7 @@ public class RoomModel {
     public RoomView view;
     private Image room;
     private Icon icon[];
+    private Icon colorIcon[];
     //static private Image table[], computer[], curtain[], poster[]; // 0=red 1=green 2=blue
     private Bed bed;
     private Table table;
@@ -21,43 +22,38 @@ public class RoomModel {
     private boolean FurnitureAccess[];
     
     public RoomModel(){
-//        FurnitureAccess = new boolean[5];
-//        FurnitureColor = new String[5];
-//        icon = new Image[5];
-//        bed = new Image[3];
-//        
-//        try{
-//            room = ImageIO.read(new File("room.png"));
-//            bed[0] = ImageIO.read(new File("bedRed.png"));
-//            bed[1] = ImageIO.read(new File("bedGreen.png"));
-//            bed[2] = ImageIO.read(new File("img/bedBlue.png"));
-//            icon[0] = ImageIO.read(new File("bedRed icon.png"));
-//            System.out.println("image load successfully");
-//        }catch(IOException IOe){
-//            System.out.println("Image loading Exception. Image file missing" + IOe);
-//        }
+        loadImage();
         
+    }
+    public void loadImage(){
         try{
             room = ImageIO.read(new File("img/room.png"));
             System.out.println("room image load successfully");
-            icon = new Icon[5];
+            icon = new Icon[FURNITURE_COUNT];
             icon[0] = new ImageIcon(ImageIO.read(new File("img/bedicon.png")));
             icon[1] = new ImageIcon(ImageIO.read(new File("img/tableicon.png")));
             icon[2] = new ImageIcon(ImageIO.read(new File("img/computericon.png")));
             icon[3] = new ImageIcon(ImageIO.read(new File("img/certainicon.png")));
             icon[4] = new ImageIcon(ImageIO.read(new File("img/postericon.png")));
+            
+            colorIcon = new Icon[COLOR_COUNT];
+            colorIcon[0] = new ImageIcon(ImageIO.read(new File("img/iconred.png")));
+            colorIcon[1] = new ImageIcon(ImageIO.read(new File("img/icongreen.png")));
+            colorIcon[2] = new ImageIcon(ImageIO.read(new File("img/iconblue.png")));
+            colorIcon[3] = new ImageIcon(ImageIO.read(new File("img/iconyellow.png")));
         }catch(IOException IOe){
-            System.out.println("Image loading Exception. Image file missing" + IOe);
+            System.out.println("icon image loading Fail?. " + IOe);
         }
+        
         for(int i=0;i<FURNITURE_COUNT;i++){
             Image tempBundle[] = new Image[COLOR_COUNT];
             for(int j=0;j<COLOR_COUNT;j++){
                 try{
                     File f = new File("img/"+ALL_FURNITURE[i]+ALL_COLOR[j]+".png");
                     tempBundle[j] = ImageIO.read(f);
-                    System.out.println(ALL_FURNITURE[i] + ALL_COLOR[j]);
+                    System.out.println("Loaded-->"+ALL_FURNITURE[i] + ALL_COLOR[j]);
                 }catch(IOException IOe){
-                    System.out.println("Image loading Exception. Image file missing" + IOe);
+                    System.out.println("furniture image loading Fail. " + IOe);
                 }
             }
             if(i == 0){
@@ -77,7 +73,6 @@ public class RoomModel {
                 System.out.println("model poster create done");
             }
         }
-        
     }
     
     public void loadData(){
@@ -93,6 +88,11 @@ public class RoomModel {
         view.getBtComputer().setIcon(icon[2]);
         view.getBtCertain().setIcon(icon[3]);
         view.getBtPoster().setIcon(icon[4]);
+        
+        view.getBtcol1().setIcon(colorIcon[0]);
+        view.getBtcol2().setIcon(colorIcon[1]);
+        view.getBtcol3().setIcon(colorIcon[2]);
+        view.getBtcol4().setIcon(colorIcon[3]);
     }
 
     public Table getTable() {

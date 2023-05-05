@@ -19,19 +19,41 @@ public abstract class Furniture {
     public Image getImage(String color){
         switch(color) {
             case "Red":
-                presentColor = "Red";
                 return imageArray[0];
             case "Green":
-                presentColor = "Green";
                 return imageArray[1];
             case "Blue":
-                presentColor = "Blue";
                 return imageArray[2];
             case "Yellow":
-                presentColor = "Yellow";
                 return imageArray[3];
             default:
                 return null;
         }
     }
+
+    public String getPresentColor() {
+        return presentColor;
+    }
+
+    public void setPresentColor(String presentColor) {
+        this.presentColor = presentColor;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isAccess() {
+        return access;
+    }
+
+    public void setAccess(boolean access) {
+        this.access = access;
+    }
+    
+    
 }

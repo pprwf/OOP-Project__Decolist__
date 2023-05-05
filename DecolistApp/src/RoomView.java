@@ -6,7 +6,8 @@ public class RoomView {
     private JFrame fr;
     private JPanel panelRoom, panelFurniture, panelFurniture_in1, panelFurniture_in2;
     private JButton btBed,btTable,btComputer,btCertain,btPoster;
-    private JButton btcol1,btcol2,btcol3;
+    private JButton btcol1,btcol2,btcol3,btcol4;
+    private JLabel l1;
     
     public RoomView(JPanel panel){
         fr = new JFrame();
@@ -19,9 +20,11 @@ public class RoomView {
         btComputer = new JButton();
         btCertain = new JButton();
         btPoster = new JButton();
-        btcol1 = new JButton("color1");
-        btcol2 = new JButton("color1");
-        btcol3 = new JButton("color1");
+        btcol1 = new JButton();
+        btcol2 = new JButton();
+        btcol3 = new JButton();
+        btcol4 = new JButton();
+        l1 = new JLabel("Select color");
         
         fr.setLayout(new BorderLayout());
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,9 +33,10 @@ public class RoomView {
         panelRoom.setPreferredSize(new Dimension(450, 450));
         panelRoom.setBorder(BorderFactory.createLineBorder(Color.red));
         //panelRoom.setBounds(25,0,400,500);
-        panelFurniture.setLayout(new GridLayout(2,1));
-        panelFurniture.add(panelFurniture_in1);
-        panelFurniture.add(panelFurniture_in2);
+        panelFurniture.setLayout(new BorderLayout());
+        panelFurniture.add(panelFurniture_in1, BorderLayout.NORTH);
+        panelFurniture.add(panelFurniture_in2, BorderLayout.CENTER);
+        panelFurniture_in2.setVisible(false);
         panelFurniture_in1.setBorder(BorderFactory.createLineBorder(Color.blue));
         panelFurniture_in2.setBorder(BorderFactory.createLineBorder(Color.green));
         panelFurniture_in1.add(btBed);
@@ -40,9 +44,21 @@ public class RoomView {
         panelFurniture_in1.add(btComputer);
         panelFurniture_in1.add(btCertain);
         panelFurniture_in1.add(btPoster);
+        panelFurniture_in2.add(l1);
         panelFurniture_in2.add(btcol1);
         panelFurniture_in2.add(btcol2);
         panelFurniture_in2.add(btcol3);
+        panelFurniture_in2.add(btcol4);
+        btBed.setBorder(BorderFactory.createRaisedBevelBorder());
+        btTable.setBorder(BorderFactory.createRaisedBevelBorder());
+        btComputer.setBorder(BorderFactory.createRaisedBevelBorder());
+        btCertain.setBorder(BorderFactory.createRaisedBevelBorder());
+        btPoster.setBorder(BorderFactory.createRaisedBevelBorder());
+        
+        btcol1.setBorder(BorderFactory.createRaisedBevelBorder());
+        btcol2.setBorder(BorderFactory.createRaisedBevelBorder());
+        btcol3.setBorder(BorderFactory.createRaisedBevelBorder());
+        btcol4.setBorder(BorderFactory.createRaisedBevelBorder());
         
         fr.setSize(450,650);
         fr.setVisible(true);
@@ -118,6 +134,14 @@ public class RoomView {
 
     public void setBtcol3(JButton btcol3) {
         this.btcol3 = btcol3;
+    }
+
+    public JButton getBtcol4() {
+        return btcol4;
+    }
+
+    public void setBtcol4(JButton btcol4) {
+        this.btcol4 = btcol4;
     }
 
     public JPanel getPanelRoom() {
