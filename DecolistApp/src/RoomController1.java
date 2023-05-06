@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.io.*;
 import javax.imageio.*;
 // class for controll room display space
-public class RoomController1 extends JPanel implements ActionListener{
+public class RoomController1 extends JPanel implements ActionListener, WindowListener{
     
     private RoomView view;
     private RoomModel model;
@@ -16,7 +16,7 @@ public class RoomController1 extends JPanel implements ActionListener{
         view = new RoomView(this);
         model = new RoomModel();
         if(this.model != null){
-                System.out.println("WTF model is still here");
+                System.out.println("model is still here");
             }else{
                 System.out.println("Nooooooo It's Error");
             }
@@ -38,9 +38,10 @@ public class RoomController1 extends JPanel implements ActionListener{
         view.getBtcol3().addActionListener(this);
         view.getBtcol4().addActionListener(this);
         
-        if(fur_Choosen == null){
-            
-        }
+        view.getFr().addWindowListener(this);
+//        if(fur_Choosen == null){
+//            
+//        }
     }
     
     @Override
@@ -126,7 +127,23 @@ public class RoomController1 extends JPanel implements ActionListener{
                 System.out.println("Is this after first line? Haiyaaa You call model before you make him watdafuq what wrong with you paintComponent");
             }
         }
-
     }
+    
+    public void windowOpened(WindowEvent we){}
+    public void windowClosed(WindowEvent we){}
+    public void windowClosing(WindowEvent we){
+        File f = new File("data.dat");
+        try(FileOutputStream fout = new FileOutputStream(f);
+            ObjectOutputStream oout = new ObjectOutputStream(fout);){
+            oout.writeObject(model.getFurniture());
+            System.out.printf("Serialized data is saved");
+        }catch(IOException IOe){
+            IOe.printStackTrace();
+        }
+    }
+    public void windowIconified(WindowEvent we){}
+    public void windowDeiconified(WindowEvent we){}
+    public void windowActivated(WindowEvent we){}
+    public void windowDeactivated(WindowEvent we){}
     
 }

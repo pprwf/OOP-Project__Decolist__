@@ -12,7 +12,7 @@ public class RoomModel {
     private Image room;
     private Icon icon[];
     private Icon colorIcon[];
-    //static private Image table[], computer[], curtain[], poster[]; // 0=red 1=green 2=blue
+    private Furniture furniture[]; // save/load this object
     private Bed bed;
     private Table table;
     private Computer computer;
@@ -22,10 +22,27 @@ public class RoomModel {
     private boolean FurnitureAccess[];
     
     public RoomModel(){
+        File f = new File("data.dat");
+        if(f.exists()){
+            loadData(f);
+            System.out.println("load data");
+        }else{
+            init();
+            System.out.println("cant find data create new one");
+        }
         loadImage();
-        
     }
-    public void loadImage(){
+    
+    public void init(){ //create bed com table certain poster data
+        furniture = new Furniture[5];
+        furniture[0] = bed = new Bed("bed");
+        furniture[1] = table = new Table("table");
+        furniture[2] = computer = new Computer("computer");
+        furniture[3] = certain = new Certain("certain");
+        furniture[4] = poster = new Poster("poster");
+    }
+    
+    public void loadImage(){ //always do
         try{
             room = ImageIO.read(new File("img/room.png"));
             System.out.println("room image load successfully");
@@ -41,11 +58,8 @@ public class RoomModel {
             colorIcon[1] = new ImageIcon(ImageIO.read(new File("img/icongreen.png")));
             colorIcon[2] = new ImageIcon(ImageIO.read(new File("img/iconblue.png")));
             colorIcon[3] = new ImageIcon(ImageIO.read(new File("img/iconyellow.png")));
-        }catch(IOException IOe){
-            System.out.println("icon image loading Fail?. " + IOe);
-        }
-        
-        for(int i=0;i<FURNITURE_COUNT;i++){
+            
+            for(int i=0;i<FURNITURE_COUNT;i++){
             Image tempBundle[] = new Image[COLOR_COUNT];
             for(int j=0;j<COLOR_COUNT;j++){
                 try{
@@ -57,26 +71,41 @@ public class RoomModel {
                 }
             }
             if(i == 0){
-                bed = new Bed(ALL_FURNITURE[i],tempBundle);
-                System.out.println("model bed create done");
+                bed.setImageArray(tempBundle);
+                System.out.println("bed image loaded");
             }else if(i == 1){
-                table = new Table(ALL_FURNITURE[i],tempBundle);
-                System.out.println("model table create done");
+                table.setImageArray(tempBundle);
+                System.out.println("table image loaded");
             }else if(i == 2){
-                computer = new Computer(ALL_FURNITURE[i],tempBundle);
-                System.out.println("model computer create done");
+                computer.setImageArray(tempBundle);
+                System.out.println("computer image loaded");
             }else if(i == 3){
-                certain = new Certain(ALL_FURNITURE[i],tempBundle);
-                System.out.println("model certain create done");
+                certain.setImageArray(tempBundle);
+                System.out.println("certain image loaded");
             }else if(i == 4){
-                poster = new Poster(ALL_FURNITURE[i],tempBundle);
-                System.out.println("model poster create done");
+                poster.setImageArray(tempBundle);
+                System.out.println("poster image loaded");
             }
+        }
+        }catch(IOException IOe){
+            System.out.println("icon image loading Fail?. " + IOe);
         }
     }
     
-    public void loadData(){
-        
+    public void loadData(File f){
+        try(FileInputStream fin = new FileInputStream(f);
+            ObjectInputStream oin = new ObjectInputStream(fin)){
+            furniture = (Furniture[])oin.readObject();
+        }catch(IOException IOe){
+                IOe.printStackTrace();
+        }catch(ClassNotFoundException CNFe){
+                CNFe.printStackTrace();
+        }
+        bed = (Bed)furniture[0];
+        table = (Table)furniture[1];
+        computer = (Computer)furniture[2];
+        certain = (Certain)furniture[3];
+        poster = (Poster)furniture[4];
     }
 
     public void addContactView(RoomView rv){
@@ -93,6 +122,22 @@ public class RoomModel {
         view.getBtcol2().setIcon(colorIcon[1]);
         view.getBtcol3().setIcon(colorIcon[2]);
         view.getBtcol4().setIcon(colorIcon[3]);
+    }
+
+    public Icon[] getColorIcon() {
+        return colorIcon;
+    }
+
+    public void setColorIcon(Icon[] colorIcon) {
+        this.colorIcon = colorIcon;
+    }
+
+    public Furniture[] getFurniture() {
+        return furniture;
+    }
+
+    public void setFurniture(Furniture[] furniture) {
+        this.furniture = furniture;
     }
 
     public Table getTable() {

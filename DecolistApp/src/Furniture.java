@@ -1,11 +1,16 @@
 import java.awt.*;
-public abstract class Furniture {
+import java.io.*;
+public abstract class Furniture implements Serializable{
     protected String presentColor, name;
-    protected Image imageArray[];
+    protected transient Image imageArray[];
     protected boolean access;
     
     public Furniture(){
         this("" ,new Image[10]);
+    }
+    
+    public Furniture(String name){
+        this(name ,new Image[10]);
     }
     
     public Furniture(String name ,Image[] imgBundle){
@@ -29,6 +34,14 @@ public abstract class Furniture {
             default:
                 return null;
         }
+    }
+
+    public Image[] getImageArray() {
+        return imageArray;
+    }
+
+    public void setImageArray(Image[] imageArray) {
+        this.imageArray = imageArray;
     }
 
     public String getPresentColor() {
