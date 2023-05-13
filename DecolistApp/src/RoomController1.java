@@ -130,7 +130,11 @@ public class RoomController1 extends JPanel implements ActionListener, WindowLis
                 g.drawImage(model.getTable().getImage(model.getTable().getPresentColor()), middle_x, middle_y, this);
             }
             if(model.getComputer().isAccess()){
-                g.drawImage(model.getComputer().getImage(model.getComputer().getPresentColor()), middle_x, middle_y, this);
+                if(model.getComputer().isPower()){
+                    g.drawImage(model.getComputer().getImage(model.getComputer().getPresentColor()), middle_x, middle_y, this);
+                }else{
+                    g.drawImage(model.getComputer().getComOffImage(), middle_x, middle_y, this);
+                }
             }
             if(model.getCertain().isAccess()){
                 g.drawImage(model.getCertain().getImage(model.getCertain().getPresentColor()), middle_x, middle_y, this);
@@ -197,6 +201,13 @@ public class RoomController1 extends JPanel implements ActionListener, WindowLis
             int middle_x = view.getPanelRoom().getWidth()/2 - 400/2;
             int middle_y = view.getPanelRoom().getHeight()/2 - 400/2;
             System.out.println(me.getPoint()+"midx= "+middle_x+" midy= "+ middle_y+ "so "+ (me.getX()-middle_x) + "," + (me.getY()-middle_y));
+            
+            if(me.getX() > middle_x+81 && me.getX() < middle_x+121){
+                if(me.getY() > middle_y+188 && me.getY() < middle_y+225){
+                    model.getComputer().takeAction();
+                    repaint();
+                }
+            }
         }
     }
     public void mouseEntered(MouseEvent me){}
@@ -209,11 +220,10 @@ public class RoomController1 extends JPanel implements ActionListener, WindowLis
         int middle_y = view.getPanelRoom().getHeight()/2 - 400/2;
         
         //view.getComhitbox().setLocation(middle_x+80,middle_y+192);
-        view.getComhitbox().setPreferredSize(new Dimension(100,100));
-       
-        view.getComhitbox().setOpaque(true);
-        view.getComhitbox().setBackground(Color.red);
-        view.getComhitbox().setBounds(new Rectangle(new Point(middle_x+80, middle_y+192), view.getComhitbox().getPreferredSize()));
+//        view.getComhitbox().setPreferredSize(new Dimension(100,100));
+//        view.getComhitbox().setOpaque(true);
+//        view.getComhitbox().setBackground(Color.red);
+//        view.getComhitbox().setBounds(new Rectangle(new Point(middle_x+80, middle_y+192), view.getComhitbox().getPreferredSize()));
         //view.getComhitbox().setText("qp[wqke[wpqkep[qw");
         System.out.println("qwewqeqwe");
     }

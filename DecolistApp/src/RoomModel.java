@@ -90,6 +90,7 @@ public class RoomModel {
             }
             
             comoff = ImageIO.read(new File("img/computeroff.png"));
+            computer.setComOffImage(comoff);
         }
         }catch(IOException IOe){
             System.out.println("icon image loading Fail?. " + IOe);
