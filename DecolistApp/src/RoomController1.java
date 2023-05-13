@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.io.*;
 import javax.imageio.*;
 // class for controll room display space
-public class RoomController1 extends JPanel implements ActionListener, WindowListener{
+public class RoomController1 extends JPanel implements ActionListener, WindowListener , MouseListener{
     
     private RoomView view;
     private RoomModel model;
@@ -21,6 +21,7 @@ public class RoomController1 extends JPanel implements ActionListener, WindowLis
                 System.out.println("Nooooooo It's Error");
             }
         init();
+        //hitBoxSet();
         repaint();
     }
     public void init(){
@@ -39,9 +40,15 @@ public class RoomController1 extends JPanel implements ActionListener, WindowLis
         view.getBtcol4().addActionListener(this);
         
         view.getFr().addWindowListener(this);
-//        if(fur_Choosen == null){
-//            
-//        }
+        
+        this.addMouseListener(this);
+        
+        view.getBtBed().setVisible(false);
+        view.getBtCertain().setVisible(false);
+        view.getBtComputer().setVisible(false);
+        view.getBtPoster().setVisible(false);
+        view.getBtTable().setVisible(false);
+        
     }
     
     @Override
@@ -115,17 +122,56 @@ public class RoomController1 extends JPanel implements ActionListener, WindowLis
             g.setColor(Color.BLACK);
             g.fillRect(middle_x-(10/2), middle_y-(10/2), 410, 410);
             g.drawImage(model.getRoom(), middle_x, middle_y, this);
-            g.drawImage(model.getBed().getImage(model.getBed().getPresentColor()), middle_x, middle_y, this);
-            g.drawImage(model.getTable().getImage(model.getTable().getPresentColor()), middle_x, middle_y, this);
-            g.drawImage(model.getComputer().getImage(model.getComputer().getPresentColor()), middle_x, middle_y, this);
-            g.drawImage(model.getCertain().getImage(model.getCertain().getPresentColor()), middle_x, middle_y, this);
-            g.drawImage(model.getPoster().getImage(model.getPoster().getPresentColor()), middle_x, middle_y, this);
-        System.out.println("draw done");
+            
+            if(model.getBed().isAccess()){
+                g.drawImage(model.getBed().getImage(model.getBed().getPresentColor()), middle_x, middle_y, this);
+            }
+            if(model.getTable().isAccess()){
+                g.drawImage(model.getTable().getImage(model.getTable().getPresentColor()), middle_x, middle_y, this);
+            }
+            if(model.getComputer().isAccess()){
+                g.drawImage(model.getComputer().getImage(model.getComputer().getPresentColor()), middle_x, middle_y, this);
+            }
+            if(model.getCertain().isAccess()){
+                g.drawImage(model.getCertain().getImage(model.getCertain().getPresentColor()), middle_x, middle_y, this);
+            }
+            if(model.getPoster().isAccess()){
+                g.drawImage(model.getPoster().getImage(model.getPoster().getPresentColor()), middle_x, middle_y, this);
+            }
+            
+        //System.out.println("draw done");
         }catch(NullPointerException NPe){
             System.out.println("OH No" + NPe);
-            if(this.model == null){
-                System.out.println("Is this after first line? Haiyaaa You call model before you make him watdafuq what wrong with you paintComponent");
-            }
+//            if(this.model == null){
+//                System.out.println("Is this after first line? Haiyaaa You call model before you make him watdafuq what wrong with you paintComponent");
+//            }
+        }
+    }
+    
+    public void furAllowAccess(String furName){
+        switch(furName) {
+            case "bed":
+                model.getBed().setAccess(true);
+                view.getBtBed().setVisible(true);
+                break;
+            case "computer":
+                model.getComputer().setAccess(true);
+                view.getBtComputer().setVisible(true);
+                break;
+            case "table":
+                model.getTable().setAccess(true);
+                view.getBtTable().setVisible(true);
+                break;
+            case "certain":
+                model.getCertain().setAccess(true);
+                view.getBtCertain().setVisible(true);
+                break;
+            case "poster":
+                model.getCertain().setAccess(true);
+                view.getBtPoster().setVisible(true);
+                break;
+            default:
+                System.out.println("Furniture name have only 'bed', 'table', 'computer', 'certain' and 'poster'");;
         }
     }
     
@@ -146,4 +192,29 @@ public class RoomController1 extends JPanel implements ActionListener, WindowLis
     public void windowActivated(WindowEvent we){}
     public void windowDeactivated(WindowEvent we){}
     
+    public void mouseClicked(MouseEvent me){
+        if(me.getSource().equals(this)){
+            int middle_x = view.getPanelRoom().getWidth()/2 - 400/2;
+            int middle_y = view.getPanelRoom().getHeight()/2 - 400/2;
+            System.out.println(me.getPoint()+"midx= "+middle_x+" midy= "+ middle_y+ "so "+ (me.getX()-middle_x) + "," + (me.getY()-middle_y));
+        }
+    }
+    public void mouseEntered(MouseEvent me){}
+    public void mouseExited(MouseEvent me){}
+    public void mousePressed(MouseEvent me){}
+    public void mouseReleased(MouseEvent me){}
+    
+    public void hitBoxSet(){
+        int middle_x = view.getPanelRoom().getWidth()/2 - 400/2;
+        int middle_y = view.getPanelRoom().getHeight()/2 - 400/2;
+        
+        //view.getComhitbox().setLocation(middle_x+80,middle_y+192);
+        view.getComhitbox().setPreferredSize(new Dimension(100,100));
+       
+        view.getComhitbox().setOpaque(true);
+        view.getComhitbox().setBackground(Color.red);
+        view.getComhitbox().setBounds(new Rectangle(new Point(middle_x+80, middle_y+192), view.getComhitbox().getPreferredSize()));
+        //view.getComhitbox().setText("qp[wqke[wpqkep[qw");
+        System.out.println("qwewqeqwe");
+    }
 }

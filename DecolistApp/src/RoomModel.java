@@ -21,6 +21,8 @@ public class RoomModel {
     private String[] FurnitureColor;
     private boolean FurnitureAccess[];
     
+    private Image comoff;
+    
     public RoomModel(){
         File f = new File("data.dat");
         if(f.exists()){
@@ -28,7 +30,7 @@ public class RoomModel {
             System.out.println("load data");
         }else{
             init();
-            System.out.println("cant find data create new one");
+            System.out.println("cant find data.dat");
         }
         loadImage();
     }
@@ -65,7 +67,7 @@ public class RoomModel {
                 try{
                     File f = new File("img/"+ALL_FURNITURE[i]+ALL_COLOR[j]+".png");
                     tempBundle[j] = ImageIO.read(f);
-                    System.out.println("Loaded-->"+ALL_FURNITURE[i] + ALL_COLOR[j]);
+                    //System.out.println("Loaded-->"+ALL_FURNITURE[i] + ALL_COLOR[j]);
                 }catch(IOException IOe){
                     System.out.println("furniture image loading Fail. " + IOe);
                 }
@@ -86,6 +88,8 @@ public class RoomModel {
                 poster.setImageArray(tempBundle);
                 System.out.println("poster image loaded");
             }
+            
+            comoff = ImageIO.read(new File("img/computeroff.png"));
         }
         }catch(IOException IOe){
             System.out.println("icon image loading Fail?. " + IOe);

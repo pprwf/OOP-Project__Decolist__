@@ -8,6 +8,7 @@ public class RoomView {
     private JButton btBed,btTable,btComputer,btCertain,btPoster;
     private JButton btcol1,btcol2,btcol3,btcol4;
     private JLabel l1;
+    private JLabel comhitbox;
     
     public RoomView(JPanel panel){
         fr = new JFrame();
@@ -25,6 +26,7 @@ public class RoomView {
         btcol3 = new JButton();
         btcol4 = new JButton();
         l1 = new JLabel("Select color");
+        comhitbox = new JLabel();
         
         fr.setLayout(new BorderLayout());
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,6 +34,7 @@ public class RoomView {
         fr.add(panelFurniture, BorderLayout.CENTER);
         panelRoom.setPreferredSize(new Dimension(450, 450));
         panelRoom.setBorder(BorderFactory.createLineBorder(Color.red));
+        panelRoom.add(comhitbox);
         //panelRoom.setBounds(25,0,400,500);
         panelFurniture.setLayout(new BorderLayout());
         panelFurniture.add(panelFurniture_in1, BorderLayout.NORTH);
@@ -59,6 +62,8 @@ public class RoomView {
         btcol2.setBorder(BorderFactory.createRaisedBevelBorder());
         btcol3.setBorder(BorderFactory.createRaisedBevelBorder());
         btcol4.setBorder(BorderFactory.createRaisedBevelBorder());
+        
+        //comhitbox.setPreferredSize();
         
         fr.setSize(450,650);
         fr.setVisible(true);
@@ -174,6 +179,22 @@ public class RoomView {
 
     public void setBtBed(JButton btBed) {
         this.btBed = btBed;
+    }
+
+    public JLabel getL1() {
+        return l1;
+    }
+
+    public void setL1(JLabel l1) {
+        this.l1 = l1;
+    }
+
+    public JLabel getComhitbox() {
+        return comhitbox;
+    }
+
+    public void setComhitbox(JLabel comhitbox) {
+        this.comhitbox = comhitbox;
     }
     
     

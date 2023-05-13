@@ -2,6 +2,7 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        new RoomController1();
+        RoomController1 ct = new RoomController1();
+        ct.furAllowAccess("bed");
     }
 }
