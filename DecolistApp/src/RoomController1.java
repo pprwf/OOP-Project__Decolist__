@@ -53,6 +53,7 @@ public class RoomController1 extends JPanel implements ActionListener, WindowLis
     
     @Override
     public void actionPerformed(ActionEvent ae){
+        
         if(ae.getSource().equals(view.getBtBed()) || ae.getSource().equals(view.getBtTable())  || ae.getSource().equals(view.getBtComputer())  || ae.getSource().equals(view.getBtCertain())  || ae.getSource().equals(view.getBtPoster()))
         {
             view.getBtBed().setBorder(BorderFactory.createRaisedBevelBorder());
@@ -60,14 +61,40 @@ public class RoomController1 extends JPanel implements ActionListener, WindowLis
             view.getBtComputer().setBorder(BorderFactory.createRaisedBevelBorder());
             view.getBtCertain().setBorder(BorderFactory.createRaisedBevelBorder());
             view.getBtPoster().setBorder(BorderFactory.createRaisedBevelBorder());
-            view.getPanelFurniture_in2().setVisible(true);
             
+            view.getPanelFurniture_in2().setVisible(true);
             view.getBtcol1().setBorder(BorderFactory.createRaisedBevelBorder());
             view.getBtcol2().setBorder(BorderFactory.createRaisedBevelBorder());
             view.getBtcol3().setBorder(BorderFactory.createRaisedBevelBorder());
             view.getBtcol4().setBorder(BorderFactory.createRaisedBevelBorder());
             
+            view.getBtcol1().setVisible(false);
+            view.getBtcol2().setVisible(false);
+            view.getBtcol3().setVisible(false);
+            view.getBtcol4().setVisible(false);
+            
             ((JButton)ae.getSource()).setBorder(BorderFactory.createLoweredBevelBorder());
+            if(ae.getSource().equals(view.getBtBed())){
+                fur_Choosen = model.getBed();
+            }else if(ae.getSource().equals(view.getBtTable())){
+                fur_Choosen = model.getTable();
+            }else if(ae.getSource().equals(view.getBtComputer())){
+                fur_Choosen = model.getComputer();
+            }else if(ae.getSource().equals(view.getBtCertain())){
+                fur_Choosen = model.getCertain();
+            }else if(ae.getSource().equals(view.getBtPoster())){
+                fur_Choosen = model.getPoster();
+            }
+            
+//            System.out.print(fur_Choosen.getColorAccess()[0]+ " ");
+//            System.out.print(fur_Choosen.getColorAccess()[1]+ " ");
+//            System.out.print(fur_Choosen.getColorAccess()[2]+ " ");
+//            System.out.println(fur_Choosen.getColorAccess()[3]+ " ");
+            view.getBtcol1().setVisible(fur_Choosen.getColorAccess()[0]);
+            view.getBtcol2().setVisible(fur_Choosen.getColorAccess()[1]);
+            view.getBtcol3().setVisible(fur_Choosen.getColorAccess()[2]);
+            view.getBtcol4().setVisible(fur_Choosen.getColorAccess()[3]);
+            
         }else if(ae.getSource().equals(view.getBtcol1()) || ae.getSource().equals(view.getBtcol2())  || ae.getSource().equals(view.getBtcol3())  || ae.getSource().equals(view.getBtcol4()))
         {
             view.getBtcol1().setBorder(BorderFactory.createRaisedBevelBorder());
@@ -76,29 +103,17 @@ public class RoomController1 extends JPanel implements ActionListener, WindowLis
             view.getBtcol4().setBorder(BorderFactory.createRaisedBevelBorder());
             
             ((JButton)ae.getSource()).setBorder(BorderFactory.createLoweredBevelBorder());
+            if(ae.getSource().equals(view.getBtcol1())){
+                ChangeColor(fur_Choosen, "Red");
+            }else if(ae.getSource().equals(view.getBtcol2())){
+                ChangeColor(fur_Choosen, "Green");
+            }else if(ae.getSource().equals(view.getBtcol3())){
+                ChangeColor(fur_Choosen, "Blue");
+            }else if(ae.getSource().equals(view.getBtcol4())){
+                ChangeColor(fur_Choosen, "Yellow");
+            }
         }
         
-        if(ae.getSource().equals(view.getBtBed())){
-            fur_Choosen = model.getBed();
-        }else if(ae.getSource().equals(view.getBtTable())){
-            fur_Choosen = model.getTable();
-        }else if(ae.getSource().equals(view.getBtComputer())){
-            fur_Choosen = model.getComputer();
-        }else if(ae.getSource().equals(view.getBtCertain())){
-            fur_Choosen = model.getCertain();
-        }else if(ae.getSource().equals(view.getBtPoster())){
-            fur_Choosen = model.getPoster();
-        }
-        
-        if(ae.getSource().equals(view.getBtcol1())){
-            ChangeColor(fur_Choosen, "Red");
-        }else if(ae.getSource().equals(view.getBtcol2())){
-            ChangeColor(fur_Choosen, "Green");
-        }else if(ae.getSource().equals(view.getBtcol3())){
-            ChangeColor(fur_Choosen, "Blue");
-        }else if(ae.getSource().equals(view.getBtcol4())){
-            ChangeColor(fur_Choosen, "Yellow");
-        }
         
     }
     
@@ -123,23 +138,23 @@ public class RoomController1 extends JPanel implements ActionListener, WindowLis
             g.fillRect(middle_x-(10/2), middle_y-(10/2), 410, 410);
             g.drawImage(model.getRoom(), middle_x, middle_y, this);
             
-            if(model.getBed().isAccess()){
+            if(model.getBed().isFurAccess()){
                 g.drawImage(model.getBed().getImage(model.getBed().getPresentColor()), middle_x, middle_y, this);
             }
-            if(model.getTable().isAccess()){
+            if(model.getTable().isFurAccess()){
                 g.drawImage(model.getTable().getImage(model.getTable().getPresentColor()), middle_x, middle_y, this);
             }
-            if(model.getComputer().isAccess()){
+            if(model.getComputer().isFurAccess()){
                 if(model.getComputer().isPower()){
                     g.drawImage(model.getComputer().getImage(model.getComputer().getPresentColor()), middle_x, middle_y, this);
                 }else{
                     g.drawImage(model.getComputer().getComOffImage(), middle_x, middle_y, this);
                 }
             }
-            if(model.getCertain().isAccess()){
+            if(model.getCertain().isFurAccess()){
                 g.drawImage(model.getCertain().getImage(model.getCertain().getPresentColor()), middle_x, middle_y, this);
             }
-            if(model.getPoster().isAccess()){
+            if(model.getPoster().isFurAccess()){
                 g.drawImage(model.getPoster().getImage(model.getPoster().getPresentColor()), middle_x, middle_y, this);
             }
             
@@ -152,30 +167,55 @@ public class RoomController1 extends JPanel implements ActionListener, WindowLis
         }
     }
     
-    public void furAllowAccess(String furName){
+    public void furAllowAccess(String furName, String color){
+        Furniture thatFur = null;
         switch(furName) {
             case "bed":
-                model.getBed().setAccess(true);
+                model.getBed().setFurAccess(true);
                 view.getBtBed().setVisible(true);
+                thatFur = model.getBed();
                 break;
             case "computer":
-                model.getComputer().setAccess(true);
+                model.getComputer().setFurAccess(true);
                 view.getBtComputer().setVisible(true);
+                thatFur = model.getComputer();
                 break;
             case "table":
-                model.getTable().setAccess(true);
+                model.getTable().setFurAccess(true);
                 view.getBtTable().setVisible(true);
+                thatFur = model.getTable();
                 break;
             case "certain":
-                model.getCertain().setAccess(true);
+                model.getCertain().setFurAccess(true);
                 view.getBtCertain().setVisible(true);
+                thatFur = model.getCertain();
                 break;
             case "poster":
-                model.getCertain().setAccess(true);
+                model.getCertain().setFurAccess(true);
                 view.getBtPoster().setVisible(true);
+                thatFur = model.getPoster();
                 break;
             default:
                 System.out.println("Furniture name have only 'bed', 'table', 'computer', 'certain' and 'poster'");;
+        }
+        
+        if(thatFur != null){
+            switch (color){
+                case "red":
+                    thatFur.getColorAccess()[0] = true;
+                    break;
+                case "green":
+                    thatFur.getColorAccess()[1] = true;
+                    break;
+                case "blue":
+                    thatFur.getColorAccess()[2] = true;
+                    break;
+                case "yellow":
+                    thatFur.getColorAccess()[3] = true;
+                    break;
+                default:
+                    System.out.println("color have only 'red', 'green', 'blue' and 'yellow'");;
+            }
         }
     }
     
@@ -200,7 +240,7 @@ public class RoomController1 extends JPanel implements ActionListener, WindowLis
         if(me.getSource().equals(this)){
             int middle_x = view.getPanelRoom().getWidth()/2 - 400/2;
             int middle_y = view.getPanelRoom().getHeight()/2 - 400/2;
-            System.out.println(me.getPoint()+"midx= "+middle_x+" midy= "+ middle_y+ "so "+ (me.getX()-middle_x) + "," + (me.getY()-middle_y));
+            //System.out.println(me.getPoint()+"midx= "+middle_x+" midy= "+ middle_y+ "so "+ (me.getX()-middle_x) + "," + (me.getY()-middle_y));
             
             if(me.getX() > middle_x+81 && me.getX() < middle_x+121){
                 if(me.getY() > middle_y+188 && me.getY() < middle_y+225){

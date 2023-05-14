@@ -3,7 +3,7 @@ import java.awt.Image;
 
 public class Computer extends Furniture implements InteractAble {
     private transient Image comOffImage;
-    private boolean Power = false;
+    private boolean Power = true;
     public Computer(String name){
         super(name);
     }

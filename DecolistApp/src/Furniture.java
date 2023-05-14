@@ -3,7 +3,8 @@ import java.io.*;
 public abstract class Furniture implements Serializable{
     protected String presentColor, name;
     protected transient Image imageArray[];
-    protected boolean access;
+    protected boolean furAccess;
+    protected boolean[] colorAccess;
     
     public Furniture(){
         this("" ,new Image[10]);
@@ -17,7 +18,8 @@ public abstract class Furniture implements Serializable{
         this.name = name;
         imageArray = imgBundle;
         presentColor = "Red";
-        access = false;
+        furAccess = false;
+        colorAccess = new boolean[]{false,false,false,false};
         System.out.println("Create Furniture " + name + " Done");
     }
     
@@ -60,12 +62,20 @@ public abstract class Furniture implements Serializable{
         this.name = name;
     }
 
-    public boolean isAccess() {
-        return access;
+    public boolean isFurAccess() {
+        return furAccess;
     }
 
-    public void setAccess(boolean access) {
-        this.access = access;
+    public void setFurAccess(boolean furAccess) {
+        this.furAccess = furAccess;
+    }
+
+    public boolean[] getColorAccess() {
+        return colorAccess;
+    }
+
+    public void setColorAccess(boolean[] colorAccess) {
+        this.colorAccess = colorAccess;
     }
     
     

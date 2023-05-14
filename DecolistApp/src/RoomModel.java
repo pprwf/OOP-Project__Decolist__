@@ -8,7 +8,7 @@ public class RoomModel {
     public static final int COLOR_COUNT = 4;
     public static final String[] ALL_COLOR = {"Red", "Green", "Blue", "Yellow"};
     public static final String[] ALL_FURNITURE = {"bed", "table", "computer", "certain", "poster"};
-    public RoomView view;
+    private RoomView view;
     private Image room;
     private Icon icon[];
     private Icon colorIcon[];

@@ -2,11 +2,11 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 public class GUIMenu {
-    JFrame frame1;
-    JPanel panel_head,panel_showTask,panel_bottom;
-    JTextArea txtArea1;
-    JScrollPane ScrollP1;
-    JButton bt_history,bt_addTask;
+    private JFrame frame1;
+    private JPanel panel_head,panel_showTask,panel_bottom;
+    private JTextArea txtArea1;
+    private JScrollPane ScrollP1;
+    private JButton bt_history,bt_addTask;
     
     public GUIMenu(){
         frame1 = new JFrame("To Do List");
