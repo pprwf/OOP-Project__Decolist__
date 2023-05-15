@@ -41,8 +41,12 @@ public class AddTaskView extends JFrame {
                 String name = nameField.getText();
                 String description = descriptionArea.getText();
 
+                Calendar calendar = Calendar.getInstance();
                 // Get the selected date from the JDateChooser as a Calendar object
-                Calendar calendar = expireDateChooser.getCalendar();
+                
+                //change here
+                //Calendar calendar = expireDateChooser.getCalendar();
+                
                 // Convert the Calendar object to a LocalDate object using the default time zone
                 LocalDate expireDate = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
