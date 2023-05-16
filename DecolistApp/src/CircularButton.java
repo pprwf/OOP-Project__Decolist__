@@ -1,29 +1,34 @@
 import java.awt.*;
 import java.awt.geom.*;
-import java.awt.image.BufferedImage;
+import java.awt.image.*;
 import javax.swing.*;
 
 public class CircularButton extends JButton {
-    private Dimension size;
-    public CircularButton (Icon icon) {
-        super(icon);
-        size = getPreferredSize();
+    private BufferedImage img;
+    public CircularButton () {
+        super();
+        setBackground(Color.lightGray);
+        setFocusable(false);
+        Dimension size = getPreferredSize();
         size.width = size.height = Math.max(size.width, size.height);
         setPreferredSize(size);
         setContentAreaFilled(false);
     }
     protected void paintComponent (Graphics g) {
+        g.setClip(new Ellipse2D.Double(0, 0, getWidth(), getHeight()));
+        g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
         if (getModel().isArmed()) {
-            g.setColor(Color.gray);
+            g.setColor(new Color(127, 127, 127, 80));
+            g.fillOval(0, 0, getSize().width - 1, getSize().height - 1);
         }
-        else {
-            g.setColor(getBackground());
-        }
-        g.fillOval(0, 0, getSize().width, getSize().height);
+        super.paintComponent(g);
     }
-    protected void paintBorder (Graphics g) {
-        int diameter = Math.min(getWidth(), getHeight()) - 1;
-        g.setColor(getForeground());
-        g.fillOval((getWidth() - diameter) / 2, (getHeight()- diameter) / 2, diameter, diameter);
+    public void setButtonImage (BufferedImage bimg) {
+        img = bimg;
+        repaint();
+    }
+    public void setButtonSize(int size) {
+        setPreferredSize(new Dimension(size, size));
+        revalidate();
     }
 }
