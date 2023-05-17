@@ -1,177 +1,7 @@
-/*
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import javax.swing.*;
-public class AddTaskView {
-    private JFrame f1;
-    private JButton b1;
-    private JPanel p1,p2,p3;
-    private JTextField txt1,txt2,txt3,txt4;
-    private JCheckBox cb1;
-    private JLabel l1,l2,l3,l4,l5;
-    //private com.toedter.calendar.JCalendar jCalendar1;
-    //private com.toedter.calendar.JDateChooser jDateChooser1;
-    //private AddDate ad;
-
-    public AddTaskView(){
-        f1 = new JFrame("Add To Do List");
-        b1 = new JButton("Submit");
-        p1 = new JPanel();
-        p2 = new JPanel();
-        p3 = new JPanel();
-        txt1 = new JTextField();
-        txt2 = new JTextField();
-        txt3 = new JTextField();
-        txt4 = new JTextField();
-        cb1 = new JCheckBox("No Expire");
-        l1 = new JLabel("Add Task");
-        l2 = new JLabel("Description");
-        l3 = new JLabel("Expire Time");
-        l4 = new JLabel("Expire Date");
-        l5 = new JLabel("Add To Do List");
-        
-        f1.setSize(300,300);
-        f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f1.setLayout(new BorderLayout());
-        
-        p1.setLayout(new FlowLayout());
-        p1.add(l5);
-        
-        p2.setLayout(new GridLayout(4,4));
-        p2.add(l1); p2.add(txt1);
-        p2.add(l2); p2.add(txt2);
-        p2.add(l3); p2.add(txt3);
-        p2.add(l4);p2.add(txt4);
-        
-        p3.setLayout(new GridLayout(3,0));
-        p3.add(cb1);
-        p3.add(b1);
-        //p3.add(jCalendar1);
-        //p3.add(ad);
-        
-        f1.add(p1,BorderLayout.NORTH);
-        f1.add(p2,BorderLayout.CENTER);
-        f1.add(p3,BorderLayout.SOUTH);
-        f1.pack();
-        f1.setVisible(true);
-    }   
-
-    public JButton getB1() {
-        return b1;
-    }
-
-    public void setB1(JButton b1) {
-        this.b1 = b1;
-    }
-
-    public JPanel getP1() {
-        return p1;
-    }
-
-    public void setP1(JPanel p1) {
-        this.p1 = p1;
-    }
-
-    public JPanel getP2() {
-        return p2;
-    }
-
-    public void setP2(JPanel p2) {
-        this.p2 = p2;
-    }
-
-    public JPanel getP3() {
-        return p3;
-    }
-
-    public void setP3(JPanel p3) {
-        this.p3 = p3;
-    }
-
-    public JTextField getTxt1() {
-        return txt1;
-    }
-
-    public void setTxt1(JTextField txt1) {
-        this.txt1 = txt1;
-    }
-
-    public JTextField getTxt2() {
-        return txt2;
-    }
-
-    public void setTxt2(JTextField txt2) {
-        this.txt2 = txt2;
-    }
-
-    public JTextField getTxt3() {
-        return txt3;
-    }
-
-    public void setTxt3(JTextField txt3) {
-        this.txt3 = txt3;
-    }
-
-    public JTextField getTxt4() {
-        return txt4;
-    }
-
-    public void setTxt4(JTextField txt4) {
-        this.txt4 = txt4;
-    }
-
-    public JCheckBox getCb1() {
-        return cb1;
-    }
-
-    public void setCb1(JCheckBox cb1) {
-        this.cb1 = cb1;
-    }
-
-    public JLabel getL1() {
-        return l1;
-    }
-
-    public void setL1(JLabel l1) {
-        this.l1 = l1;
-    }
-
-    public JLabel getL2() {
-        return l2;
-    }
-
-    public void setL2(JLabel l2) {
-        this.l2 = l2;
-    }
-
-    public JLabel getL3() {
-        return l3;
-    }
-
-    public void setL3(JLabel l3) {
-        this.l3 = l3;
-    }
-
-    public JLabel getL4() {
-        return l4;
-    }
-
-    public void setL4(JLabel l4) {
-        this.l4 = l4;
-    }
-
-    public JLabel getL5() {
-        return l5;
-    }
-
-    public void setL5(JLabel l5) {
-        this.l5 = l5;
-    }
-}
-*/
 
 import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JSpinnerDateEditor;
 import java.util.Calendar;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -182,113 +12,130 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class AddTaskView {
-    private JFrame f1,f2;
-    private JButton b1;
-    private JPanel p1,p2,p3;
-    private JTextField txt1,txt2,txt3,txt4;
-    private JCheckBox cb1;
-    private JLabel l1,l2,l3,l4,l5;
-    //private com.toedter.calendar.JCalendar jCalendar1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private JFrame frame;
+    private JButton submit;
+    private JPanel panel1,panel2,panel3;
+    private JTextField txt1,txt2;
+    private JCheckBox checkbox;
+    private JLabel addtask,Des,extime,exdate,topic;
+    private JDateChooser DateChooser;
     private JCalendar calendar;
-    //private AddDate ad;
+    private JSpinner timedate;
+    private SpinnerDateModel timemodel;
+    private JSpinner.DateEditor timeedit;
 
     public AddTaskView(){
-        f1 = new JFrame("Add To Do List");
-        f2 = new JFrame();
-        b1 = new JButton("Submit");
-        p1 = new JPanel();
-        p2 = new JPanel();
-        p3 = new JPanel();
+        frame = new JFrame("Add To Do List");
+        submit = new JButton("Submit");
+        panel1 = new JPanel();
+        panel2 = new JPanel();
+        panel3 = new JPanel();
         txt1 = new JTextField();
         txt2 = new JTextField();
-        txt3 = new JTextField();
-        txt4 = new JTextField();
-        cb1 = new JCheckBox("No Expire");
-        l1 = new JLabel("Add Task");
-        l2 = new JLabel("Description");
-        l3 = new JLabel("Expire Time");
-        l4 = new JLabel("Expire Date");
-        l5 = new JLabel("Add To Do List");
-        
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        checkbox = new JCheckBox("No Expire");
+        addtask = new JLabel("Add Task");
+        Des = new JLabel("Description");
+        extime = new JLabel("Expire Time");
+        exdate = new JLabel("Expire Date");
+        topic = new JLabel("Add To Do List");
+        timemodel = new SpinnerDateModel();
+        timedate = new JSpinner(timemodel);
+        timeedit = new JSpinner.DateEditor(timedate, "HH:mm");
+        DateChooser = new com.toedter.calendar.JDateChooser();
         calendar = new JCalendar();
         calendar.setLocale(new Locale("th", "TH"));
+        
+        //Date
         Calendar maxDate = Calendar.getInstance();
         maxDate.set(3000, Calendar.DECEMBER, 31);
         Date maxSelectableDate = maxDate.getTime();
         Calendar minDate = Calendar.getInstance();
         minDate.setTime(new Date());
         Date minSelectableDate = minDate.getTime();
-        jDateChooser1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jDateChooser1.setToolTipText("");
-        jDateChooser1.setDateFormatString("dd-MM-yyyy");
-        jDateChooser1.setMaxSelectableDate(maxSelectableDate);
-        jDateChooser1.setMinSelectableDate(minSelectableDate);
+        DateChooser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        DateChooser.setToolTipText("");
+        DateChooser.setDateFormatString("dd-MM-yyyy");
+        DateChooser.setMaxSelectableDate(maxSelectableDate);
+        DateChooser.setMinSelectableDate(minSelectableDate);
         
-        SpinnerDateModel timeModel = new SpinnerDateModel();
-        JSpinner timeSpinner = new JSpinner(timeModel);
-        JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(timeSpinner, "HH:mm");
-        timeSpinner.setEditor(timeEditor);
+        //Time
+        timedate.setEditor(timeedit);
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(new Date());
-        timeModel.setValue(calendar.getTime());
+        timemodel.setValue(calendar.getTime());
         
-        f1.setSize(300,300);
-        f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f1.setLayout(new BorderLayout());
         
-        p1.setLayout(new FlowLayout());
-        p1.add(l5);
+        frame.setSize(300,300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
         
-        p2.setLayout(new GridLayout(4,4));
-        p2.add(l1); p2.add(txt1);
-        p2.add(l2); p2.add(txt2);
-        p2.add(l3); p2.add(timeSpinner);
-        p2.add(l4);p2.add(jDateChooser1);
+        panel1.setLayout(new FlowLayout());
+        panel1.add(topic);
         
-        p3.setLayout(new GridLayout(2,0));
-        p3.add(cb1);
-        p3.add(b1);
+        panel2.setLayout(new GridLayout(4,4));
+        panel2.add(addtask); panel2.add(txt1);
+        panel2.add(Des); panel2.add(txt2);
+        panel2.add(extime); panel2.add(timedate);
+        panel2.add(exdate);panel2.add(DateChooser);
         
-        f1.add(p1,BorderLayout.NORTH);
-        f1.add(p2,BorderLayout.CENTER);
-        f1.add(p3,BorderLayout.SOUTH);
-        f1.pack();
-        f1.setVisible(true);
+        panel3.setLayout(new GridLayout(2,0));
+        panel3.add(checkbox);
+        panel3.add(submit);
+        
+        frame.add(panel1,BorderLayout.NORTH);
+        frame.add(panel2,BorderLayout.CENTER);
+        frame.add(panel3,BorderLayout.SOUTH);
+        frame.pack();
+        frame.setVisible(true);
         
     }   
 
-    public JButton getB1() {
-        return b1;
+    public JDateChooser getDateChooser() {
+        return DateChooser;
     }
 
-    public void setB1(JButton b1) {
-        this.b1 = b1;
+    public void setDateChooser(JDateChooser DateChooser) {
+        this.DateChooser = DateChooser;
     }
 
-    public JPanel getP1() {
-        return p1;
+    public JCalendar getCalendar() {
+        return calendar;
     }
 
-    public void setP1(JPanel p1) {
-        this.p1 = p1;
+    public void setCalendar(JCalendar calendar) {
+        this.calendar = calendar;
     }
 
-    public JPanel getP2() {
-        return p2;
+    public JButton getSubmit() {
+        return submit;
     }
 
-    public void setP2(JPanel p2) {
-        this.p2 = p2;
+    public void setSubmit(JButton submit) {
+        this.submit = submit;
     }
 
-    public JPanel getP3() {
-        return p3;
+    public JPanel getPanel1() {
+        return panel1;
     }
 
-    public void setP3(JPanel p3) {
-        this.p3 = p3;
+    public void setPanel1(JPanel panel1) {
+        this.panel1 = panel1;
+    }
+
+    public JPanel getPanel2() {
+        return panel2;
+    }
+
+    public void setPanel2(JPanel panel2) {
+        this.panel2 = panel2;
+    }
+
+    public JPanel getPanel3() {
+        return panel3;
+    }
+
+    public void setPanel3(JPanel panel3) {
+        this.panel3 = panel3;
     }
 
     public JTextField getTxt1() {
@@ -307,67 +154,76 @@ public class AddTaskView {
         this.txt2 = txt2;
     }
 
-    public JTextField getTxt3() {
-        return txt3;
+    public JCheckBox getCheckbox() {
+        return checkbox;
     }
 
-    public void setTxt3(JTextField txt3) {
-        this.txt3 = txt3;
+    public void setCheckbox(JCheckBox checkbox) {
+        this.checkbox = checkbox;
     }
 
-    public JTextField getTxt4() {
-        return txt4;
+    public JLabel getAddtask() {
+        return addtask;
     }
 
-    public void setTxt4(JTextField txt4) {
-        this.txt4 = txt4;
+    public void setAddtask(JLabel addtask) {
+        this.addtask = addtask;
     }
 
-    public JCheckBox getCb1() {
-        return cb1;
+    public JLabel getDes() {
+        return Des;
     }
 
-    public void setCb1(JCheckBox cb1) {
-        this.cb1 = cb1;
+    public void setDes(JLabel Des) {
+        this.Des = Des;
     }
 
-    public JLabel getL1() {
-        return l1;
+    public JLabel getExtime() {
+        return extime;
     }
 
-    public void setL1(JLabel l1) {
-        this.l1 = l1;
+    public void setExtime(JLabel extime) {
+        this.extime = extime;
     }
 
-    public JLabel getL2() {
-        return l2;
+    public JLabel getExdate() {
+        return exdate;
     }
 
-    public void setL2(JLabel l2) {
-        this.l2 = l2;
+    public void setExdate(JLabel exdate) {
+        this.exdate = exdate;
     }
 
-    public JLabel getL3() {
-        return l3;
+    public JLabel getTopic() {
+        return topic;
     }
 
-    public void setL3(JLabel l3) {
-        this.l3 = l3;
+    public void setTopic(JLabel topic) {
+        this.topic = topic;
     }
 
-    public JLabel getL4() {
-        return l4;
+    public JSpinner getTimedate() {
+        return timedate;
     }
 
-    public void setL4(JLabel l4) {
-        this.l4 = l4;
+    public void setTimedate(JSpinner timedate) {
+        this.timedate = timedate;
     }
 
-    public JLabel getL5() {
-        return l5;
+    public SpinnerDateModel getTimemodel() {
+        return timemodel;
     }
 
-    public void setL5(JLabel l5) {
-        this.l5 = l5;
+    public void setTimemodel(SpinnerDateModel timemodel) {
+        this.timemodel = timemodel;
     }
+
+    public JSpinner.DateEditor getTimeedit() {
+        return timeedit;
+    }
+
+    public void setTimeedit(JSpinner.DateEditor timeedit) {
+        this.timeedit = timeedit;
+    }
+    
 }
