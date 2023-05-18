@@ -1,12 +1,16 @@
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class BottomController implements ActionListener, KeyListener {
+public class BottomController extends JPanel implements ActionListener, KeyListener {
     private BottomView bv;
+    private RoomController rc;
     private int textCount, newLineCount, charCount;
     public BottomController () {
+        setPreferredSize(new Dimension(495, 220));
         bv = new BottomView();
+        
+        add(bv);
 
         bv.getMessage().addKeyListener(this);
         bv.getNote().addKeyListener(this);
@@ -17,9 +21,11 @@ public class BottomController implements ActionListener, KeyListener {
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource().equals(bv.getRoomButton())) {
             bv.setProgressPercent(bv.getProgressPercent() + 20);
+            new RoomController();
         }
         else if (ae.getSource().equals(bv.getGachaButton())) {
             bv.setProgressPercent((bv.getProgressPercent() - 100));
+            new GachaView();
         }
         bv.getProgressBar().setValue(bv.getProgressPercent());
     }
@@ -38,7 +44,7 @@ public class BottomController implements ActionListener, KeyListener {
             if (textCount < 0) {
                 textCount ++;
             }
-            bv.getNote().setBorder(BorderFactory.createLineBorder(Color.black, 2));
+            bv.getNote().setBorder(BorderFactory.createLineBorder(Color.black, 1));
             bv.getMessage().setForeground(Color.black);
         }
         else if (textCount >= 250) {
@@ -52,7 +58,7 @@ public class BottomController implements ActionListener, KeyListener {
         }
         else {
             textCount ++;
-            bv.getNote().setBorder(BorderFactory.createLineBorder(Color.black, 2));
+            bv.getNote().setBorder(BorderFactory.createLineBorder(Color.black, 1));
             bv.getMessage().setForeground(Color.black);
             if (newLineCount > 0) {
                 charCount ++;
@@ -66,8 +72,8 @@ public class BottomController implements ActionListener, KeyListener {
     }
 
     public void keyReleased(KeyEvent ke) {}
-    
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {new BottomController();});
+
+    public BottomView getBv() {
+        return bv;
     }
 }
