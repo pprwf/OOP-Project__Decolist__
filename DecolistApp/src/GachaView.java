@@ -4,21 +4,17 @@ import javax.swing.*;
 
 public class GachaView {
     private Random rand;
-    private RoomModel model;
-    private RoomController room;
     private JFrame fr;
     private JLabel item, message;
     private JOptionPane dialog;
-    public GachaView () {
+    public GachaView (RoomController room) {
         fr = new JFrame();
         rand = new Random();
-        model = new RoomModel();
-        room = new RoomController();
         item = new JLabel();
         message = new JLabel();
         
         fr.setLayout(new FlowLayout());
-        randItem(room, model, message, item);
+        randItem(room, room.getModel(), message, item);
         item.setSize(new Dimension(200, 100));
         message.setFont(new BottomView().thai);
         message.setSize(new Dimension(500, 100));

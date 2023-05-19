@@ -29,7 +29,7 @@ public class BottomController extends JPanel implements ActionListener, KeyListe
         }
         else if (ae.getSource().equals(bv.getGachaButton())) {
             bv.setProgressPercent((bv.getProgressPercent() - 100));
-            new GachaView();
+            new GachaView(rc);
         }
         bv.getProgressBar().setValue(bv.getProgressPercent());
     }

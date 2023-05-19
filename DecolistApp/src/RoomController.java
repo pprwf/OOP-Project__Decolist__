@@ -282,4 +282,8 @@ public class RoomController extends JPanel implements ActionListener, WindowList
         this.view = view;
     }
 
+    public RoomModel getModel() {
+        return model;
+    }
+
 }
