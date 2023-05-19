@@ -10,6 +10,11 @@ public class GachaView {
     public GachaView (RoomController room) {
         fr = new JFrame();
         rand = new Random();
+<<<<<<< HEAD
+=======
+        this.room = room;
+        model = this.room.getModel();
+>>>>>>> 2b67c472d06fd1f5ac71092676ccd4f56f48d433
         item = new JLabel();
         message = new JLabel();
         
