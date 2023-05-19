@@ -9,6 +9,7 @@ public class BottomController extends JPanel implements ActionListener, KeyListe
     public BottomController () {
         setPreferredSize(new Dimension(495, 220));
         bv = new BottomView();
+        rc = new RoomController();
         
         add(bv);
 
@@ -20,8 +21,11 @@ public class BottomController extends JPanel implements ActionListener, KeyListe
 
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource().equals(bv.getRoomButton())) {
-            bv.setProgressPercent(bv.getProgressPercent() + 20);
-            new RoomController();
+            if (bv.getProgressPercent() < 100) {
+                bv.setProgressPercent(bv.getProgressPercent() + 20);
+            }
+            rc.setView(new RoomView(rc));
+            rc.getView().getFr().setVisible(true);
         }
         else if (ae.getSource().equals(bv.getGachaButton())) {
             bv.setProgressPercent((bv.getProgressPercent() - 100));

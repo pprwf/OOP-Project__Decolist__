@@ -273,4 +273,13 @@ public class RoomController extends JPanel implements ActionListener, WindowList
         //view.getComhitbox().setText("qp[wqke[wpqkep[qw");
         System.out.println("qwewqeqwe");
     }
+
+    public RoomView getView() {
+        return view;
+    }
+
+    public void setView(RoomView view) {
+        this.view = view;
+    }
+
 }

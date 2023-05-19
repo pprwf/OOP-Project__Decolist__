@@ -73,7 +73,7 @@ public class RoomView {
         
         fr.setSize(500, 750);
         fr.setLocationRelativeTo(null);
-        fr.setVisible(true);
+        fr.setVisible(false);
     }
 
     public JPanel getPanelFurniture_in1() {
