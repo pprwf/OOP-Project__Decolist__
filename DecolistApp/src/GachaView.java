@@ -9,11 +9,11 @@ public class GachaView {
     private JFrame fr;
     private JLabel item, message;
     private JOptionPane dialog;
-    public GachaView () {
+    public GachaView (RoomController room) {
         fr = new JFrame();
         rand = new Random();
-        model = new RoomModel();
-        room = new RoomController();
+        this.room = room;
+        model = this.room.getModel();
         item = new JLabel();
         message = new JLabel();
         
