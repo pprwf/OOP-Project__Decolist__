@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.font.TextAttribute;
 //import java.awt.event.ActionListener;
 //import java.awt.event.ItemEvent;
 //import java.awt.event.ItemListener;
@@ -8,17 +9,19 @@ import javax.swing.border.LineBorder;
 
 import java.time.*;
 import java.time.temporal.ChronoUnit;
+import java.util.Map;
+import javax.swing.border.EmptyBorder;
 
 public class GUITask extends JPanel implements Runnable{
     private int number;
     private String name, des, time, exp;
-    JPanel jpanelfirst,jpanelcenter, jPanellast;
-    JPanel DonePanel;
-    JLabel labelName, labelDes, labelTime, labelDate;
+    private JPanel jpanelfirst,jpanelcenter, jPanellast;
+    private JPanel DonePanel;
+    private JLabel labelName, labelDes, labelTime, labelDate;
     private JButton btDone, btCancle;
     private long year_left,month_left,day_left,hr_left,min_lift,sec_left;
     private int due_year,due_month,due_day,due_hr,due_min,due_sec;
-    LocalDateTime dueDateTime;
+    private LocalDateTime dueDateTime;
 
     public GUITask(int number, String name, String des, String time, String exp) {
 
@@ -37,8 +40,11 @@ public class GUITask extends JPanel implements Runnable{
         this.exp = exp;
         btDone = new JButton("<html>Mark as<center>Done</center></html>");
         btCancle = new JButton("Cancle");
-        this.setMaximumSize(new Dimension(420,60));
+        this.setMaximumSize(new Dimension(420,70));
         this.setLayout(new BorderLayout());
+        this.setBorder(new EmptyBorder(3, 0, 3, 0));
+        this.setOpaque(false);
+        this.setBackground(Middle_View.BG_COLOR);
         DonePanel = new JPanel();
         jpanelfirst = new JPanel();
         jpanelcenter = new JPanel();
@@ -48,51 +54,69 @@ public class GUITask extends JPanel implements Runnable{
         labelTime = new JLabel(time);
         labelDate = new JLabel(exp +" "+ time);
         
+        jpanelfirst.setOpaque(false);
+        jpanelcenter.setOpaque(false);
+        jPanellast.setOpaque(false);
+        labelName.setOpaque(false);
+        labelDes.setOpaque(false);
+        labelTime.setOpaque(false);
+        labelDate.setOpaque(false);
         labelName.setFont(new Font("serif", Font.BOLD, 25));
         labelDes.setFont(new Font("serif", Font.PLAIN, 15));
         labelTime.setFont(new Font("serif", Font.BOLD, 25));
         labelDate.setFont(new Font("serif", Font.PLAIN, 10));
         labelName.setPreferredSize(new Dimension(140,35));
         labelDes.setPreferredSize(new Dimension(140,25));
-        labelTime.setPreferredSize(new Dimension(140,35));
-        labelDate.setPreferredSize(new Dimension(140,25));
+        labelTime.setPreferredSize(new Dimension(100,48));
+        labelDate.setPreferredSize(new Dimension(100,12));
         this.add(jpanelfirst, BorderLayout.WEST); 
         this.add(jpanelcenter, BorderLayout.CENTER); 
         this.add(jPanellast, BorderLayout.EAST);
         
-        jpanelfirst.setLayout(new FlowLayout());
-        jpanelfirst.setPreferredSize(new Dimension(70,60));
-        jpanelfirst.add(btDone);
-        jpanelfirst.add(btCancle);
+        jpanelfirst.setLayout(new BorderLayout());
+        jpanelfirst.setPreferredSize(new Dimension(70,70));
+        jpanelfirst.add(btDone, BorderLayout.NORTH);
+        jpanelfirst.add(btCancle, BorderLayout.SOUTH);
         btCancle.setVisible(false);
 
         //jpanelfirst.setBorder(BorderFactory.createLineBorder(Color.RED));
         jpanelcenter.setLayout(new BorderLayout());
         jpanelcenter.add(labelName, BorderLayout.NORTH);
         jpanelcenter.add(labelDes, BorderLayout.SOUTH);
+        labelDes.setForeground(Color.gray);
+        
         jPanellast.setLayout(new BorderLayout());
+        jPanellast.setBorder(new EmptyBorder(4, 0, 2, 0));
         jPanellast.add(labelTime, BorderLayout.NORTH);
         jPanellast.add(labelDate, BorderLayout.SOUTH);
         
-        jpanelfirst.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
-        jpanelcenter.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
-        jPanellast.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+        //jpanelfirst.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+        jpanelfirst.setBorder(new EmptyBorder(10, 6, 1, 6));
+//        jpanelcenter.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+//        jPanellast.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
         
-        labelName.setOpaque(true);
-        labelName.setBackground(new Color(190, 255, 250));
+        //.setOpaque(true);
+        //labelName.setBackground(new Color(190, 255, 250));
         labelName.setBorder(BorderFactory.createMatteBorder(0,0,1,0,Color.GRAY));
-        labelDes.setOpaque(true);
-        labelDes.setBackground(new Color(130, 230, 250));
+        Font font = labelName.getFont();
+        Map attributes = font.getAttributes();
+        attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+        labelName.setFont(font.deriveFont(attributes));
+        //labelDes.setOpaque(true);
+        //labelDes.setBackground(new Color(130, 230, 250));
         labelTime.setHorizontalAlignment(JLabel.CENTER);
         labelTime.setForeground(Color.RED);
         labelDate.setHorizontalAlignment(JLabel.CENTER);
         
         DonePanel.setLayout(new GridLayout(1,1));
-        DonePanel.setBackground(Color.black);
+        DonePanel.setOpaque(false);
+        //DonePanel.setBackground(Color.black);
         DonePanel.setPreferredSize(new Dimension(140,60));
+        DonePanel.setBorder(new EmptyBorder(10, 0, 0, 0));
         JLabel lDonenew = new JLabel("Done");
-        lDonenew.setForeground(Color.WHITE);
+        lDonenew.setForeground(Color.BLACK);
         lDonenew.setHorizontalAlignment(JLabel.CENTER);
+        lDonenew.setFont(new Font("Calibri", Font.BOLD, 40));
         DonePanel.add(lDonenew);
         
 //        btDone.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -101,7 +125,7 @@ public class GUITask extends JPanel implements Runnable{
         //btDone.setBounds(0, 0, 50, 50);
         btDone.setPreferredSize(new Dimension(50,40));
         btDone.setFont(new Font("Calibri", Font.PLAIN, 10));
-        btDone.setBackground(Color.green);
+        btDone.setBackground(new Color(20, 255, 99));
         btDone.setUI(new StyledButtonUI());
         //btCancle.setBounds(0, 0, 50, 30);
         btCancle.setPreferredSize(new Dimension(50,30));
@@ -111,7 +135,21 @@ public class GUITask extends JPanel implements Runnable{
         
 //        btDone.addActionListener(this);
 //        btCancle.addActionListener(this);
-
+        repaint();
+        revalidate();
+    }
+    
+    @Override
+    public void paintComponent(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        Stroke oldStroke = g2d.getStroke();
+        g2d.setColor(new Color(236, 236, 157));
+        g2d.fillRoundRect(0, 3, this.getWidth(), 65, 25, 25);
+        
+        g2d.setStroke(new BasicStroke(3));
+        g2d.setColor(new Color(180, 180, 100));
+        g2d.drawRoundRect(0, 3, this.getWidth(), 65, 25, 25);
+        g2d.setStroke(oldStroke);
     }
     @Override
     public void run(){

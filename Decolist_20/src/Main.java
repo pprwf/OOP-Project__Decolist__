@@ -24,7 +24,19 @@ public class Main {
         //new AddTaskView();
         //new TestController();
         
-        new New_GUIController();
+//        try{//UIManager.getSystemLookAndFeelClassName()  "javax.swing.plaf.nimbus.NimbusLookAndFeel"  
+//            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
+//        SwingUtilities.invokeLater(() -> { desktopPane = new JDesktopPane(); });
+        try{
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        SwingUtilities.invokeLater(() -> { New_GUIController frame = new New_GUIController(); });
+        //new New_GUIController();
         //new TopPanel();
     }
 }

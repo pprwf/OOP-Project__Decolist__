@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 public class New_GUIView {
@@ -11,6 +12,7 @@ public class New_GUIView {
     private JButton bt_history,bt_addTask;
     
     public New_GUIView(JPanel head_panel, JPanel bottom_panel, JPanel middle_panel){
+        System.out.println("===================================== GUI VIEW =====================================");
         frame1 = new JFrame("To Do List");
         panel_head = head_panel;
         panel_middle = middle_panel;
@@ -23,10 +25,11 @@ public class New_GUIView {
         frame1.add(ScrollP1, BorderLayout.CENTER);
         frame1.add(panel_bottom, BorderLayout.SOUTH);
         //panel_middle.setPreferredSize(new Dimension(300,300));
-        panel_middle.setBorder(BorderFactory.createLineBorder(Color.red));
+        //panel_middle.setBorder(BorderFactory.createLineBorder(Color.red));
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         frame1.setSize(420, 700);
+        frame1.setLocationRelativeTo(null);
         //frame1.setMaximumSize(new Dimension(420, 700));
         frame1.setResizable(false);
         frame1.setVisible(true);

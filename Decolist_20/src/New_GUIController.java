@@ -15,6 +15,7 @@ public class New_GUIController implements WindowListener, ActionListener{
     //AddTaskView test;
 
     public New_GUIController() {
+        System.out.println("===================================== GUI Controll =====================================");
         model = new New_GUIModel();
         bottomView = new BottomView();
         middle_Con = new Middle_Controll(this);

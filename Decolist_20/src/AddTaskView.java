@@ -87,7 +87,7 @@ public class AddTaskView {
         timemodel.setValue(calendar.getTime());
         
         
-        frame.setSize(300,300);
+        frame.setPreferredSize(new Dimension(300,240));
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         
@@ -108,7 +108,7 @@ public class AddTaskView {
         
         panel3.setLayout(new GridLayout(1,0));
         panel3.add(submit);
-        
+        frame.setLocationRelativeTo(null);
         frame.add(panel1,BorderLayout.NORTH);
         frame.add(panel2,BorderLayout.CENTER);
         frame.add(panel3,BorderLayout.SOUTH);
