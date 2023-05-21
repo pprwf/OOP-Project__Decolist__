@@ -94,7 +94,9 @@ public class Middle_Controll implements ActionListener, MouseListener, InternalF
         int Panelnumber = thatpanel.getNumber();
         if(e.getSource().equals(thatpanel.getBtDone())){
             System.out.println("clicker");
-            int jOptionSelect = JOptionPane.showConfirmDialog(thatpanel, "Aye you sure to complete this task?\n["+thatpanel.getName()+"]", "Confirm action", JOptionPane.YES_NO_OPTION);
+            JLabel label = new JLabel("<html>Aye you sure to complete this task? <br>["+thatpanel.getName()+"]</html>");
+            label.setFont(new Font("TH Sarabun New", Font.PLAIN, 20));
+            int jOptionSelect = JOptionPane.showConfirmDialog(thatpanel, label, "Confirm action", JOptionPane.YES_NO_OPTION);
             if(jOptionSelect == 0){
                 thatpanel.getBtDone().setVisible(false);
                 thatpanel.getBtCancle().setVisible(true);

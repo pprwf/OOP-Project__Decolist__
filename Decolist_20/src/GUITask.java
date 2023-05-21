@@ -61,10 +61,10 @@ public class GUITask extends JPanel implements Runnable{
         labelDes.setOpaque(false);
         labelTime.setOpaque(false);
         labelDate.setOpaque(false);
-        labelName.setFont(new Font("TH Sarabun New", Font.BOLD, 25));
-        labelDes.setFont(new Font("TH Sarabun New", Font.PLAIN, 15));
-        labelTime.setFont(new Font("TH Sarabun New", Font.BOLD, 25));
-        labelDate.setFont(new Font("TH Sarabun New", Font.PLAIN, 10));
+        labelTime.setFont(new Font("serif", Font.BOLD, 25));
+        labelDate.setFont(new Font("serif", Font.PLAIN, 10));
+        labelName.setFont(new Font("TH Sarabun New", Font.BOLD, 30));
+        labelDes.setFont(new Font("TH Sarabun New", Font.PLAIN, 20));
         labelName.setPreferredSize(new Dimension(140,35));
         labelDes.setPreferredSize(new Dimension(140,25));
         labelTime.setPreferredSize(new Dimension(100,48));
@@ -116,7 +116,7 @@ public class GUITask extends JPanel implements Runnable{
         JLabel lDonenew = new JLabel("Done");
         lDonenew.setForeground(Color.BLACK);
         lDonenew.setHorizontalAlignment(JLabel.CENTER);
-        lDonenew.setFont(new Font("TH Sarabun New", Font.BOLD, 40));
+        lDonenew.setFont(new Font("serif", Font.BOLD, 40));
         DonePanel.add(lDonenew);
         
 //        btDone.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -124,12 +124,12 @@ public class GUITask extends JPanel implements Runnable{
         
         //btDone.setBounds(0, 0, 50, 50);
         btDone.setPreferredSize(new Dimension(50,40));
-        btDone.setFont(new Font("TH Sarabun New", Font.PLAIN, 10));
+        btDone.setFont(new Font("serif", Font.PLAIN, 10));
         btDone.setBackground(new Color(20, 255, 99));
         btDone.setUI(new StyledButtonUI());
         //btCancle.setBounds(0, 0, 50, 30);
         btCancle.setPreferredSize(new Dimension(50,30));
-        btCancle.setFont(new Font("TH Sarabun New", Font.PLAIN, 10));
+        btCancle.setFont(new Font("serif", Font.PLAIN, 10));
         btCancle.setBackground(Color.PINK);
         btCancle.setUI(new StyledButtonUI());
         

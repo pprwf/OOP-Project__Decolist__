@@ -37,8 +37,8 @@ public class AddTaskController implements  ActionListener{
             int number = arrTask.size() +1;
             Task task = new Task(number, topic, des, date, time, false);
             arrTask.add(task);
-            midControll.refresh();
             System.out.println("added task");
+            midControll.refresh();
 //            for(int i= 0; i<arrTask.length; i++){
 //                //System.out.println(i);
 //                if(arrTask[i] == null){
