@@ -1,9 +1,11 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.*;
 import java.awt.font.TextAttribute;
+import java.net.URL;
 import java.util.*;
 import java.util.LinkedList;
 import javax.swing.*;
@@ -18,11 +20,20 @@ public class Middle_Controll implements ActionListener, MouseListener, InternalF
     LinkedList<Task> arrTasks;
     HashMap<Integer, JPanel> mapPanel;
     New_GUIController GUIControll;
+    URL url;
+    Icon icon;
+    JLabel ltorielGIF;
+    
     public Middle_Controll(New_GUIController GUIControll) {
         view = new Middle_View();
         this.GUIControll = GUIControll;
         this.arrTasks = GUIControll.getModel().getArrTasks();
         mapPanel = new HashMap<Integer, JPanel>();
+        url = getClass().getResource("toriel_sleep2.gif");//animegirl_sleep.gif  toriel_sleep.gif
+        icon = new ImageIcon(url);
+        ltorielGIF = new JLabel(icon);
+        ltorielGIF.setMaximumSize(new Dimension(150, 150));
+        ltorielGIF.setOpaque(false);
         refresh();
     }
     public void refresh(){
@@ -121,6 +132,7 @@ public class Middle_Controll implements ActionListener, MouseListener, InternalF
             GUIControll.getToppanel().setInternalFrame(new JInternalFrame("Task info", false, true));
             JInternalFrame internalFrame = GUIControll.getToppanel().getInternalFrame();
             JDesktopPane desktopPane = GUIControll.getToppanel().getDesktopPane();
+            JPanel paneldraw = GUIControll.getToppanel().getPaneldraw();
             //internalFrame = new JInternalFrame("Task info", false, true);
             internalFrame.setLayout(new BorderLayout());
             internalFrame.setPreferredSize(new Dimension(200,200));
@@ -157,7 +169,12 @@ public class Middle_Controll implements ActionListener, MouseListener, InternalF
             lTime.setText(thatpanel.getExp() +" "+thatpanel.getTime());
             panel_big.setMaximumSize(new Dimension(200 , 4000));
             internalFrame.add(sc);
+            //ltorielGIF.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+            paneldraw.setVisible(true);
+            paneldraw.add(ltorielGIF);
             
+//            ltorielGIF.revalidate();
+//            ltorielGIF.repaint();
             
             desktopPane.add(internalFrame);
             internalFrame.setVisible(true);
@@ -186,6 +203,9 @@ public class Middle_Controll implements ActionListener, MouseListener, InternalF
         System.out.println(e.getSource().equals(GUIControll.getToppanel().getInternalFrame())+"444444444");
         System.out.println(e.getSource().toString());
         if(e.getSource().equals(GUIControll.getToppanel().getInternalFrame())){
+            JPanel paneldraw = GUIControll.getToppanel().getPaneldraw();
+            paneldraw.setVisible(false);
+            paneldraw.removeAll();
             GUIControll.getToppanel().getPanel().setPreferredSize(TopPanel.DMS_SMALL);
             GUIControll.getToppanel().getPanel().revalidate();
             GUIControll.getToppanel().getPanel().repaint();
