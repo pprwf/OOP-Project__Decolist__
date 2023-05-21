@@ -154,10 +154,10 @@ public class Middle_Controll implements ActionListener, MouseListener, InternalF
 //            panel_timeAdate.setPreferredSize(new Dimension(200,10));
             panel_timeAdate.setBorder(new EmptyBorder(10, 0, 0, 0));
             
-            lTitle.setFont(new Font("serif", Font.BOLD, 20));
-            lDes.setFont(new Font("serif", Font.PLAIN, 15));
-            lDate.setFont(new Font("serif", Font.PLAIN, 15));
-            lTime.setFont(new Font("serif", Font.PLAIN, 15));
+            lTitle.setFont(new Font("TH Sarabun New", Font.BOLD, 20));
+            lDes.setFont(new Font("TH Sarabun New", Font.PLAIN, 15));
+            lDate.setFont(new Font("TH Sarabun New", Font.PLAIN, 15));
+            lTime.setFont(new Font("TH Sarabun New", Font.PLAIN, 15));
             
             Font font = lTitle.getFont();
             Map attributes = font.getAttributes();
