@@ -10,25 +10,21 @@ public class GachaView {
     public GachaView (RoomController room) {
         fr = new JFrame();
         rand = new Random();
-<<<<<<< HEAD
-=======
-        this.room = room;
-        model = this.room.getModel();
->>>>>>> 2b67c472d06fd1f5ac71092676ccd4f56f48d433
         item = new JLabel();
         message = new JLabel();
         
-        fr.setLayout(new FlowLayout());
         randItem(room, room.getModel(), message, item);
-        item.setSize(new Dimension(200, 100));
+        item.setHorizontalAlignment(JLabel.CENTER);
+        item.setVerticalAlignment(JLabel.CENTER);
         message.setFont(new BottomView().thai);
-        message.setSize(new Dimension(500, 100));
+        message.setHorizontalAlignment(JLabel.CENTER);
+        message.setVerticalAlignment(JLabel.CENTER);
         
-        fr.add(item);
-        fr.add(message);
+        fr.add(item, BorderLayout.NORTH);
+        fr.add(new JPanel().add(message));
         
         fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        fr.setSize(new Dimension(500, 200));
+        fr.setSize(new Dimension(400, 250));
         fr.setLocationRelativeTo(null);
         fr.setVisible(true);
     }
@@ -38,68 +34,58 @@ public class GachaView {
         switch (rand.nextInt(4)) {
             case 0:
                 if (rm.getBed().furAccess) {
-                    rc.furAllowAccess("bed", myColor);
+                    dialogShow(rm, rc, pics, "bed", myColor);
                     message.setText("You got " + capital + " color for your Bed!");
                 }
                 else {
-                    rc.furAllowAccess("bed", "red");
-                    pics.setIcon(new ImageIcon("img/bedRed.png"));
+                    dialogShow(rm, rc, pics, "bed", "red");
                     message.setText("You got your first Bed!!");
                 }
                 break;
             case 1:
                 if (rm.getCertain().furAccess) {
-                    rc.furAllowAccess("certain", myColor);
+                    dialogShow(rm, rc, pics, "certain", myColor);
                     message.setText("You got " + capital + " color for your Curtain!");
                 }
                 else {
-                    rc.furAllowAccess("certain", "red");
-                    pics.setIcon(new ImageIcon("img/certainRed.png"));
+                    dialogShow(rm, rc, pics, "certain", "red");
                     message.setText("You got your first Curtain!!");
                 }
                 break;
             case 2:
                 if (rm.getTable().furAccess) {
-                    rc.furAllowAccess("table", myColor);
-                    if (rand.nextInt(2) == 2) {
-                        rc.furAllowAccess("computer", myColor);
+                    if (rand.nextInt(2) == 0) {
                         if (rm.getComputer().furAccess) {
-                            rc.furAllowAccess("computer", myColor);
+                            dialogShow(rm, rc, pics, "computer", myColor);
                             message.setText("You got " + capital + " color for your Computer!");
                         }
                         else {
-                            rc.furAllowAccess("computer", "red");
-                            pics.setIcon(new ImageIcon("img/computerRed.png"));
+                            dialogShow(rm, rc, pics, "computer", "first");
                             message.setText("You got your first Computer!!");
                         }
                         return;
                     }
-                    rc.furAllowAccess("table", myColor);
+                    dialogShow(rm, rc, pics, "table", myColor);
                     message.setText("You got " + capital + " color for your Table!");
                 }
                 else {
-                    rc.furAllowAccess("table", "red");
-                    pics.setIcon(new ImageIcon("img/tableRed.png"));
+                    dialogShow(rm, rc, pics, "table", "red");
                     message.setText("You got your first Table!!");
                 }
                 break;
             default:
                 if (rm.getPoster().furAccess) {
-                    rc.furAllowAccess("poster", myColor);
+                    dialogShow(rm, rc, pics, "poster", myColor);
                     message.setText("You got " + capital + " color for your Poster!");
                 }
                 else {
-                    rc.furAllowAccess("poster", "red");
-                    pics.setIcon(new ImageIcon("img/posterRed.png"));
+                    dialogShow(rm, rc, pics, "poster", "red");
                     message.setText("You got your first Poster!!");
                 }
-                break;
         }
     }
     private String randColor () {
-        switch (rand.nextInt(4)) {
-            case 0:
-                return "red";
+        switch (rand.nextInt(3)) {
             case 1:
                 return "green";
             case 2:
@@ -107,5 +93,45 @@ public class GachaView {
             default:
                 return "yellow";
         }
+    }
+    private void dialogShow (RoomModel rm, RoomController rc, JLabel pics, String furniture, String color) {
+        Furniture fur = null;
+        boolean gCol = fur.getColorAccess()[1];
+        boolean bCol = fur.getColorAccess()[2];
+        boolean yCol = fur.getColorAccess()[3];
+        switch (furniture) {
+            case "bed":
+                fur = rm.getBed();
+                if (gCol && bCol && yCol) {
+                    randItem(rc, rm, message, item);
+                }
+                else {
+                    switch (color) {
+                        case "green":
+                            color = randColor();
+                            break;
+                        default:
+                            throw new AssertionError();
+                    }
+                }
+                break;
+            case "certain":
+                break;
+            case "computer":
+                break;
+            case "table":
+                break;
+            default:
+                break;
+        }
+        String capital = Character.toUpperCase(color.charAt(0)) + color.substring(1);
+        rc.furAllowAccess(furniture, color);
+        if (color == "first") {
+            color = "red";
+        }
+        else if (furniture == "certain") {
+            furniture = "curtain";
+        }
+        pics.setIcon(new ImageIcon("img/"+ furniture + capital + "Icon.png"));
     }
 }

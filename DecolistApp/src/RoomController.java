@@ -24,14 +24,14 @@ public class RoomController extends JPanel implements ActionListener, WindowList
         //hitBoxSet();
         repaint();
     }
-    public void refresh(){
-        view.getBtBed().setVisible(model.getBed().isFurAccess());
-        view.getBtCertain().setVisible(model.getCertain().isFurAccess());
-        view.getBtComputer().setVisible(model.getComputer().isFurAccess());
-        view.getBtPoster().setVisible(model.getPoster().isFurAccess());
-        view.getBtTable().setVisible(model.getTable().isFurAccess());
-        repaint();
-    }
+//    public void refresh(){
+//        view.getBtBed().setVisible(model.getBed().isFurAccess());
+//        view.getBtCertain().setVisible(model.getCertain().isFurAccess());
+//        view.getBtComputer().setVisible(model.getComputer().isFurAccess());
+//        view.getBtPoster().setVisible(model.getPoster().isFurAccess());
+//        view.getBtTable().setVisible(model.getTable().isFurAccess());
+//        repaint();
+//    }
     
     public void init(){
         model.addContactView(view);
@@ -294,12 +294,7 @@ public class RoomController extends JPanel implements ActionListener, WindowList
     public RoomModel getModel() {
         return model;
     }
-
-<<<<<<< HEAD
-=======
     public void setModel(RoomModel model) {
         this.model = model;
     }
-    
->>>>>>> 2b67c472d06fd1f5ac71092676ccd4f56f48d433
 }

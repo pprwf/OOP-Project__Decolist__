@@ -7,8 +7,7 @@ public class RoomView {
     private JPanel panelRoom, panelFurniture, panelFurniture_in1, panelFurniture_in2;
     private JButton btBed,btTable,btComputer,btCertain,btPoster;
     private JButton btcol1,btcol2,btcol3,btcol4;
-    private JLabel l1;
-    private JLabel comhitbox;
+    private JLabel l1, comhitbox;
     
     public RoomView(JPanel panel){
         fr = new JFrame();
