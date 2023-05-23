@@ -78,7 +78,7 @@ public class MiddleController implements ActionListener, MouseListener, Internal
         if(e.getSource().equals(thatpanel.getBtDone())){
             JLabel taskName = new JLabel(thatpanel.getName());
             taskName.setFont(mainText);
-            JLabel label = new JLabel("<html>Aye you sure to complete this task? <br>["+ taskName.getText() +"]</html>");
+            JLabel label = new JLabel("Are you sure that you complete <"+ thatpanel.getName() +"> task?");
             label.setFont(mainText);
             int jOptionSelect = JOptionPane.showConfirmDialog(thatpanel, label, "Confirm action", JOptionPane.YES_NO_OPTION);
             if(jOptionSelect == 0){
