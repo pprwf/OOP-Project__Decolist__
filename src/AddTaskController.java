@@ -1,10 +1,10 @@
-
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Member;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.LinkedList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,13 +12,13 @@ public class AddTaskController implements  ActionListener{
 
     private AddTaskView view;
     //private AddTaskModel model;
-    private Task[] arrTask;
-    
-    public AddTaskController(Task[] arrTask) {
+    private LinkedList<Task> arrTask;
+    Middle_Controll midControll;
+    public AddTaskController(LinkedList<Task> arrTask, Middle_Controll midControll) {
         view = new AddTaskView();
         //model = new AddTaskModel();
         this.arrTask = arrTask;
-        
+        this.midControll = midControll;
         view.getSubmit().addActionListener(this);
     }
     
@@ -33,16 +33,19 @@ public class AddTaskController implements  ActionListener{
             String date = df.format(view.getDateChooser().getDate());
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String str = dateFormat.format(view.getDateChooser().getDate());
-            
-            Task task = new Task(topic, des, date, time, false);
-
-            for(int i= 0; i<arrTask.length; i++){
-                //System.out.println(i);
-                if(arrTask[i] == null){
-                    arrTask[i] = task;
-                    break;
-                }
-            }
+            int number = arrTask.size() +1;
+            Task task = new Task(number, topic, des, date, time, false);
+            arrTask.add(task);
+            System.out.println("added task");
+            midControll.refresh();
+//            for(int i= 0; i<arrTask.length; i++){
+//                //System.out.println(i);
+//                if(arrTask[i] == null){
+//                    arrTask[i] = task;
+//                    System.out.println("added task");
+//                    break;
+//                }
+//            }
         }
     }
     

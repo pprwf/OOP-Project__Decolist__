@@ -8,7 +8,6 @@ public class CircularButton extends JButton {
     public CircularButton () {
         super();
         setBackground(Color.lightGray);
-        setFocusable(false);
         Dimension size = getPreferredSize();
         size.width = size.height = Math.max(size.width, size.height);
         setPreferredSize(size);
@@ -18,8 +17,8 @@ public class CircularButton extends JButton {
         g.setClip(new Ellipse2D.Double(0, 0, getWidth(), getHeight()));
         g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
         if (getModel().isArmed()) {
-            g.setColor(new Color(127, 127, 127, 80));
-            g.fillOval(0, 0, getSize().width - 1, getSize().height - 1);
+            g.setColor(new Color(127, 127, 127, 70));
+            g.fillOval(0, 0, getWidth() - 1, getHeight() - 1);
         }
         super.paintComponent(g);
     }

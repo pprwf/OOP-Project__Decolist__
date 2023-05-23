@@ -4,18 +4,28 @@ import java.time.LocalDateTime;
 
 public class Task implements Serializable {
 
+    private int number;
     private String taskName;
     private String taskDescription;
     private String expireDate;
     private String expireTime;
     private boolean status;
 
-    public Task(String taskName, String taskDescription, String expireDate, String expireTime, boolean staus) {
+    public Task(int number, String taskName, String taskDescription, String expireDate, String expireTime, boolean staus) {
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.expireDate = expireDate;
         this.expireTime = expireTime;
         this.status = staus;
+        this.number = number;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public boolean isStatus() {
@@ -23,7 +33,6 @@ public class Task implements Serializable {
     }
 
     public void setStatus(boolean status) {
-        status = false;
         this.status = status;
     }
 

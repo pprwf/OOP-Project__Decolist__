@@ -1,4 +1,7 @@
-
+//<<<<<<< HEAD
+//=======
+//
+//>>>>>>> origin/room
 import java.awt.Image;
 
 public class Computer extends Furniture implements InteractAble {
@@ -27,5 +30,8 @@ public class Computer extends Furniture implements InteractAble {
     public void setPower(boolean Power) {
         this.Power = Power;
     }
-    
+//<<<<<<< HEAD
+//=======
+//    
+//>>>>>>> origin/room
 }

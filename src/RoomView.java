@@ -7,8 +7,12 @@ public class RoomView {
     private JPanel panelRoom, panelFurniture, panelFurniture_in1, panelFurniture_in2;
     private JButton btBed,btTable,btComputer,btCertain,btPoster;
     private JButton btcol1,btcol2,btcol3,btcol4;
+//<<<<<<< HEAD
+//    private JLabel l1, comhitbox;
+//=======
     private JLabel l1;
     private JLabel comhitbox;
+//>>>>>>> origin/room
     
     public RoomView(JPanel panel){
         fr = new JFrame();
@@ -29,7 +33,11 @@ public class RoomView {
         comhitbox = new JLabel();
         
         fr.setLayout(new BorderLayout());
-        fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//<<<<<<< HEAD
+        fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//=======
+//        fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//>>>>>>> origin/room
         fr.add(panelRoom, BorderLayout.NORTH);
         fr.add(panelFurniture, BorderLayout.CENTER);
         panelRoom.setPreferredSize(new Dimension(450, 450));
@@ -71,8 +79,14 @@ public class RoomView {
         
         //comhitbox.setPreferredSize();
         
-        fr.setSize(450,650);
-        fr.setVisible(true);
+//<<<<<<< HEAD
+        fr.setSize(500, 750);
+        fr.setLocationRelativeTo(null);
+        fr.setVisible(false);
+//=======
+//        fr.setSize(450,650);
+//        fr.setVisible(true);
+//>>>>>>> origin/room
     }
 
     public JPanel getPanelFurniture_in1() {
