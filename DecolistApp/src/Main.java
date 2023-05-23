@@ -1,9 +1,13 @@
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-<<<<<<< HEAD
         JFrame fr = new JFrame();
         BottomController bc = new BottomController();
         fr.add(new JPanel(), BorderLayout.NORTH);
@@ -14,15 +18,38 @@ public class Main {
         fr.setSize(500, 750);
         fr.setLocationRelativeTo(null);
         fr.setVisible(true);
-=======
-        RoomController1 ct = new RoomController1();
-        ct.furAllowAccess("bed", "red");
-        ct.furAllowAccess("bed", "blue");
-        ct.furAllowAccess("table", "red");
-        ct.furAllowAccess("computer", "red");
-        ct.furAllowAccess("computer", "blue");
-        ct.furAllowAccess("computer", "green");
-        ct.furAllowAccess("computer", "yellow");
->>>>>>> origin/room
     }
+//    public void windowOpened(WindowEvent we) {
+//        if (new File ("ProgressStatus.dat").exists()) {
+//            System.out.println("Exist");
+//            try (FileInputStream fr = new FileInputStream("ProgressStatus.dat");) {
+//                int st = fr.read();
+//                bv.setProgressPercent(st);
+//                System.out.println("Load");
+//            }
+//            catch (Exception e) {
+//                System.out.println(e);
+//            }
+//        }
+//    }
+//
+//    public void windowClosing(WindowEvent we) {
+//        try (FileOutputStream fw = new FileOutputStream("ProgressStatus.dat");) {
+//            fw.write(bc.getProgressPercent());
+//            System.out.println("Saving");
+//        }
+//        catch (Exception e) {
+//            System.out.println(e);
+//        }
+//    }
+
+    public void windowClosed(WindowEvent e) {}
+
+    public void windowIconified(WindowEvent e) {}
+
+    public void windowDeiconified(WindowEvent e) {}
+
+    public void windowActivated(WindowEvent e) {}
+
+    public void windowDeactivated(WindowEvent e) {}
 }
