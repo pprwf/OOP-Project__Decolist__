@@ -48,7 +48,13 @@ public class GachaView implements ActionListener {
         Furniture furItem;
         int randColor = rand.nextInt(furColor.size());
         String capital = Character.toUpperCase(furColor.get(randColor).charAt(0)) + furColor.get(randColor).substring(1);
-        if (counting == 5) {
+        boolean con1,con2,con3,con4,con5;
+        con1 = (rm.getBed().getColorAccess()[0]& rm.getBed().getColorAccess()[1]& rm.getBed().getColorAccess()[2]& rm.getBed().getColorAccess()[3]);
+        con2 = (rm.getTable().getColorAccess()[0]& rm.getTable().getColorAccess()[1]& rm.getTable().getColorAccess()[2]& rm.getTable().getColorAccess()[3]);
+        con3 = (rm.getComputer().getColorAccess()[0]& rm.getComputer().getColorAccess()[1]& rm.getComputer().getColorAccess()[2]& rm.getComputer().getColorAccess()[3]);
+        con4 = (rm.getCertain().getColorAccess()[0]& rm.getCertain().getColorAccess()[1]& rm.getCertain().getColorAccess()[2]& rm.getCertain().getColorAccess()[3]);
+        con5 = (rm.getPoster().getColorAccess()[0]& rm.getPoster().getColorAccess()[1]& rm.getPoster().getColorAccess()[2]& rm.getPoster().getColorAccess()[3]);
+        if (counting >= 5 && con1 && con2 && con3 && con4 && con5) {
             message.setText("Congratulation!! You got all Item!");
         }
         else {
