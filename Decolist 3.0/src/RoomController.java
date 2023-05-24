@@ -41,6 +41,11 @@ public class RoomController extends JPanel implements ActionListener, WindowList
         view.getBtTable().setVisible(model.getTable().isFurAccess());
         
     }
+    
+    private void displayClick (InteractAble i) {
+        i.takeAction();
+        repaint();
+    }
 
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource().equals(view.getBtBed()) || ae.getSource().equals(view.getBtTable())  || ae.getSource().equals(view.getBtComputer())  || ae.getSource().equals(view.getBtCertain())  || ae.getSource().equals(view.getBtPoster()))
@@ -221,8 +226,7 @@ public class RoomController extends JPanel implements ActionListener, WindowList
             int middle_y = view.getPanelRoom().getHeight()/2 - 400/2;
             if(me.getX() > middle_x+81 && me.getX() < middle_x+121){
                 if(me.getY() > middle_y+188 && me.getY() < middle_y+225){
-                    model.getComputer().takeAction();
-                    repaint();
+                    displayClick(model.getComputer());
                 }
             }
         }
