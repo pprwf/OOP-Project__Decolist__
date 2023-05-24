@@ -9,7 +9,7 @@ public class AddTaskController implements  ActionListener{
     private LinkedList<Task> arrTask;
     MiddleController midControll;
     public AddTaskController(LinkedList<Task> arrTask, MiddleController midControll) {
-        view = new AddTaskView();
+        view = new AddTaskView() {};
         this.arrTask = arrTask;
         this.midControll = midControll;
         view.getSubmit().addActionListener(this);

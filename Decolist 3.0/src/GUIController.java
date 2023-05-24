@@ -8,11 +8,11 @@ public class GUIController implements WindowListener, ActionListener{
     TopPanel toppanel;
     MiddleController middle_Con;
     public GUIController() {
-        model = new GUIModel();
+        model = new GUIModel() {};
         bottomComtroll = new BottomController(this);
         middle_Con = new MiddleController(this, bottomComtroll.getBv());
         toppanel = new TopPanel();
-        view = new GUIView(toppanel.getPanel(), bottomComtroll, middle_Con.getView());
+        view = new GUIView(toppanel.getPanel(), bottomComtroll, middle_Con.getView()) {};
         
         toppanel.getAddTask().addActionListener(this);
         toppanel.getTable().addActionListener(this);

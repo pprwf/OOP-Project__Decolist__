@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class RoomView {
+public abstract class RoomView {
     private JFrame fr;
     private JPanel panelRoom, panelFurniture, panelFurniture_in1, panelFurniture_in2;
     private JButton btBed,btTable,btComputer,btCertain,btPoster;

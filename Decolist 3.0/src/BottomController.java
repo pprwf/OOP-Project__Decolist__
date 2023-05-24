@@ -13,7 +13,7 @@ public class BottomController extends JPanel implements ActionListener, KeyListe
         setBackground(new Color(250, 229, 172));
         setOpaque(true);
         
-        bv = new BottomView();
+        bv = new BottomView() {};
         rc = new RoomController();
         gCon = gui;
         

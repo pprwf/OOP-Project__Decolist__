@@ -7,7 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import java.util.*;
 
 
-public class GUIModel {
+public abstract class GUIModel {
     private JTable Jtable;
     DefaultTableModel DFJtable;
     LinkedList<Task> arrTasks;

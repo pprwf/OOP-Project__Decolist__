@@ -2,7 +2,7 @@ import java.io.*;
 import java.awt.*;
 import javax.imageio.*;
 import javax.swing.*;
-public class RoomModel {
+public abstract class RoomModel {
     public static final int FURNITURE_COUNT = 5;
     public static final int COLOR_COUNT = 4;
     public static final String[] ALL_COLOR = {"Red", "Green", "Blue", "Yellow"};

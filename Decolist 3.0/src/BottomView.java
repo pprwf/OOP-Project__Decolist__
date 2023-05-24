@@ -3,7 +3,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.imageio.*;
 
-public class BottomView extends JPanel {
+public abstract class BottomView extends JPanel {
     public Font thai;
     private JPanel areaZone, buttonZone, nonVisiblePanel, roomPanel, gachaPanel, blankPanel;
     private JLabel message;

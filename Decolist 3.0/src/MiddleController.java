@@ -20,7 +20,7 @@ public class MiddleController implements ActionListener, MouseListener, Internal
     public MiddleController(GUIController GUIControll, BottomView botView) {
         mainText = new ThaiFont().thBold.deriveFont(25f);
         confirmText = new ThaiFont().thBold.deriveFont(18f);
-        view = new MiddleView();
+        view = new MiddleView() {};
         bv = botView;
         this.GUIControll = GUIControll;
         this.arrTasks = GUIControll.getModel().getArrTasks();

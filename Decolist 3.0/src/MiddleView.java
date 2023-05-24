@@ -2,7 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-public class MiddleView extends JPanel{
+public abstract class MiddleView extends JPanel{
     public static final Color BG_COLOR = new Color(254, 255, 210);
     public MiddleView() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

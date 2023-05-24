@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class AddTaskView {
+public abstract class AddTaskView {
     private Font thai;
     private JFrame frame;
     private JButton submit;

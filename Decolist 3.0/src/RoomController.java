@@ -9,8 +9,8 @@ public class RoomController extends JPanel implements ActionListener, WindowList
     private String color_Choosen;
     
     public RoomController(){
-        view = new RoomView(this);
-        model = new RoomModel();
+        view = new RoomView(this) {};
+        model = new RoomModel() {};
         init();
         repaint();
     }

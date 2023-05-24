@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class GUIView {
+public abstract class GUIView {
     private JFrame frame1;
     private JPanel panel_head,panel_middle,panel_bottom;
     private JTextArea txtArea1;
