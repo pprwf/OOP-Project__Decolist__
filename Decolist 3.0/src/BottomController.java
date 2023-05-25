@@ -24,25 +24,45 @@ public class BottomController extends JPanel implements ActionListener, KeyListe
         bv.getRoomButton().addActionListener(this);
         bv.getGachaButton().addActionListener(this);
     }
-    public void savePercent () {
+    public void saveBottomValue () {
         int num = bv.getProgressPercent();
-        File f = new File("resource/datFile/percent.dat");
-        try (FileOutputStream fout = new FileOutputStream(f);) {
-            fout.write(num);
+        try (FileOutputStream fw = new FileOutputStream(new File("resource/datFile/percent.dat"));) {
+            fw.write(num);
         }
-        catch(IOException IOe) {
-            IOe.printStackTrace();
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+        try (FileOutputStream fw = new FileOutputStream(new File("resource/datFile/note.dat"));) {
+            for (int st = 0; st < bv.getNote().getText().length(); st++) {
+                fw.write(bv.getNote().getText().charAt(st));
+            }
+        }
+        catch(IOException e) {
+            e.printStackTrace();
         }
     }
-    public void loadPercent(){
+    public void loadBottomValue(){
         int num = 0;
         File f = new File("resource/datFile/percent.dat");
         if (f.exists()) {
             try(FileInputStream fin = new FileInputStream(f);){
                 num = fin.read();
             }
-            catch(IOException IOe){
-                IOe.printStackTrace();
+            catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+        f = new File("resource/datFile/note.dat");
+        if (f.exists()) {
+            try(FileInputStream fr = new FileInputStream(f);){
+                int st = fr.read();
+                while (st != -1) {
+                    bv.getNote().setText(bv.getNote().getText() + (char) st);
+                    st = fr.read();
+                }
+            }
+            catch(IOException e){
+                e.printStackTrace();
             }
         }
         bv.setProgressPercent(num);

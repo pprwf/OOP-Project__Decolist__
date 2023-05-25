@@ -1,9 +1,9 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class JtableShow extends JFrame{
+public class JTableShow extends JFrame{
     private Font thai;
-    public JtableShow(JTable Jtable){
+    public JTableShow(JTable Jtable){
         thai = new ThaiFont().thBold.deriveFont(20f);
         setTitle("Task List");
         setSize(600, 300);

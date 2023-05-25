@@ -34,20 +34,20 @@ public class GUIController implements WindowListener, ActionListener{
             AddTaskController addTaskController = new AddTaskController(model.getArrTasks(), middle_Con);
         } else if(ae.getSource().equals(toppanel.getTable())) {
             addDataToJTable();
-            JtableShow jtableShow = new JtableShow(model.getJtable());
+            JTableShow jtableShow = new JTableShow(model.getJtable());
         }
     }
     public void windowClosing(WindowEvent e){
        if(e.getSource().equals(view.getFrame1())){
             model.saveData(model.getArrTasks());
         }
-        bottomComtroll.savePercent();
+        bottomComtroll.saveBottomValue();
     } 
     public void windowOpened(WindowEvent e){
         if(e.getSource().equals(view.getFrame1())){
             model.loadData();
         }
-        bottomComtroll.loadPercent();
+        bottomComtroll.loadBottomValue();
     }
     public void windowDeactivated(WindowEvent e){}
     public void windowActivated(WindowEvent e){}
